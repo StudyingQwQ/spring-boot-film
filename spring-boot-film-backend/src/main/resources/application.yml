@@ -1,12 +1,12 @@
 spring:
   mail:
     host: smtp.163.com
-    username: your-mail
-    password: your-password
+    username: 13760831277@163.com
+    password: PAPQMFLGPZIIEPBJ
   rabbitmq:
     addresses: localhost
-    username: admin
-    password: 123456
+    username: guest
+    password: guest
     virtual-host: /
   security:
     filter:
@@ -15,7 +15,7 @@ spring:
       key: spring-boot-film
       expire: 7
   datasource:
-    url: jdbc:mysql://localhost:3306/film
+    url: jdbc:mysql://localhost:3309/film
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

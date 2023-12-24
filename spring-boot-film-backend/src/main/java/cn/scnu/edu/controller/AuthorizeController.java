@@ -100,6 +100,16 @@ public class AuthorizeController {
     }
 
     /**
+     * 升级vip
+     * @param email 邮箱
+     * @return 是否升级成功
+     */
+    @GetMapping("/vip")
+    public RestBean<String> vip(@RequestParam String email){
+        return this.messageHandle(() -> service.setVip(email));
+    }
+
+    /**
      * 针对于返回值为String作为错误信息的方法进行统一处理，是下面的messageHandle的重载
      * @param vo 信息
      * @param function 具体操作

@@ -32,7 +32,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Configuration
-public class SecurityConfiguration {
+public class  SecurityConfiguration {
     @Resource
     JwtUtils utils;
     @Resource

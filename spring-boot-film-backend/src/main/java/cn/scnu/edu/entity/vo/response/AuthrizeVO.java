@@ -12,5 +12,6 @@ public class AuthrizeVO {
     String username;
     String role;
     String token;
+    Integer points;
     Date expire;
 }

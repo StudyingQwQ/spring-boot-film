@@ -8,6 +8,7 @@ import cn.scnu.edu.mapper.AccountMapper;
 import cn.scnu.edu.service.AccountService;
 import cn.scnu.edu.utils.Const;
 import cn.scnu.edu.utils.FlowUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
@@ -38,6 +39,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     StringRedisTemplate stringRedisTemplate;
     @Resource
     PasswordEncoder encoder;
+
 
     /**
      * 从数据库中通过用户名或邮箱查找用户详细信息
@@ -98,7 +100,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         if (existsAccountByEmail(email)) return "该邮箱已被注册";
         if (existsAccountByUsername(username)) return "该用户名已被注册";
         String password = encoder.encode(vo.getPassword());
-        Account account = new Account(null,vo.getUsername(), password, vo.getEmail(), "user", new Date());
+        Account account = new Account(null,vo.getUsername(), password, vo.getEmail(), "user",500, new Date());
         if(this.save(account)){
             stringRedisTemplate.delete(key);
             return null;
@@ -117,6 +119,23 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         String code = stringRedisTemplate.opsForValue().get(Const.VERIFY_EMAIL_DATA+email);
         if (code==null) return "请先获取验证码";
         if (!code.equals(vo.getCode())) return "验证码错误";
+        return null;
+    }
+
+    /**
+     * 升级vip
+     * @param email 升级用户的邮箱
+     * @return 操作结果，null表示正常，否则为错误原因
+     */
+    @Override
+    public String setVip(String email) {
+        Account account = this.findAccountByNameOrEmail(email);
+        if(account.getPoints()<1000) return "您的积分不足以升级";
+        this.update().eq("email",email).set("role","vip").set("points",account.getPoints()-1000).update();
+//        Integer points = accountMapper.selectOne(queryWrapper).getPoints();
+//        if(points<1000) return "您的积分不足以升级";
+//        this.update().eq("email",email).set("role","vip").set("points",points-1000).update();
+
         return null;
     }
 
