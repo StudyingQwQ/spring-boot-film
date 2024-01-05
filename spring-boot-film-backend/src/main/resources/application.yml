@@ -10,8 +10,8 @@ spring:
       max-request-size: 50MB
   mail:
     host: smtp.163.com
-    username: 13760831277@163.com
-    password: PAPQMFLGPZIIEPBJ
+    username: youremail
+    password: yourpassword
   rabbitmq:
     addresses: localhost
     username: guest
