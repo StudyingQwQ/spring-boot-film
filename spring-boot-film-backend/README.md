@@ -1,5 +1,5 @@
 # spring-boot-film后端代码
-请在运行前启动redis和rabbitMQ,并在application.yml中更改配置
+请在运行前启动redis和rabbitMQ和minio,并在application.yml中更改配置
 在服务启动后可以通过 http://localhost:8080/swagger-ui/index.html 查看和测试接口<br>
 另外部分接口需要token,请在Header的Authorization参数中填入Bearer +token进行测试<br>
 ### 项目结构树

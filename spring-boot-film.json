@@ -46,631 +46,856 @@
 			},
 			"children": [
 				{
-					"target_type": "api",
-					"name": "密码重置",
+					"target_type": "folder",
+					"name": "文件操作",
 					"mark": "developing",
-					"sort": 2,
+					"sort": 11,
 					"tags": [],
-					"method": "POST",
-					"mock": "{}",
-					"mock_url": "/api/auth/reset-confirm",
 					"request": {
-						"url": "http://localhost:8080/api/auth/reset-confirm",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"body": {
-							"mode": "json",
-							"parameter": [],
-							"raw": "{\n\t\"email\": \"2703001087@qq.com\",\n\t\"code\": \"574687\",\n    \"password\":\"654321\"\n}",
-							"raw_para": [],
-							"raw_schema": {
-								"type": "object"
-							}
-						}
+						"description": ""
 					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "发送邮箱验证码(注册)",
-					"mark": "developing",
-					"sort": 4,
-					"tags": [],
-					"method": "GET",
-					"mock": "{}",
-					"mock_url": "/api/auth/ask-code",
-					"request": {
-						"url": "http://localhost:8080/api/auth/ask-code?email=2703001087@qq.com&type=register",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"body": {
-							"mode": "json",
-							"parameter": [],
-							"raw": "",
-							"raw_para": [],
-							"raw_schema": {
-								"type": "object"
-							}
-						},
-						"query": {
-							"parameter": [
-								{
-									"description": "",
-									"is_checked": 1,
-									"key": "email",
-									"type": "Text",
-									"not_null": 1,
-									"field_type": "String",
-									"value": "2703001087@qq.com"
+					"children": [
+						{
+							"target_type": "api",
+							"name": "文件上传",
+							"mark": "developing",
+							"sort": 1,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/uploadFile",
+							"request": {
+								"url": "http://localhost:8080/api/auth/uploadFile",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
 								},
-								{
-									"description": "",
-									"is_checked": 1,
-									"key": "type",
-									"type": "Text",
-									"not_null": 1,
-									"field_type": "String",
-									"value": "register"
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "file",
+											"value": [
+												"D:\\Desktop\\score.png"
+											],
+											"not_null": 1,
+											"type": "File",
+											"filename": "score.png",
+											"fileBase64": []
+										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
 								}
-							]
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
 						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
+						{
+							"target_type": "api",
+							"name": "文件下载",
+							"mark": "developing",
+							"sort": 2,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "",
+							"request": {
+								"url": "",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
 						}
-					},
-					"children": []
+					]
 				},
 				{
-					"target_type": "api",
-					"name": "密码重置请求",
+					"target_type": "folder",
+					"name": "用户操作",
 					"mark": "developing",
-					"sort": 7,
+					"sort": 10,
 					"tags": [],
-					"method": "POST",
-					"mock": "{}",
-					"mock_url": "/api/auth/reset-confirm",
 					"request": {
-						"url": "http://localhost:8080/api/auth/reset-confirm",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"body": {
-							"mode": "json",
-							"parameter": [],
-							"raw": "{\n\t\"email\": \"2703001087@qq.com\",\n\t\"code\": \"574687\"\n}",
-							"raw_para": [],
-							"raw_schema": {
-								"type": "object",
-								"properties": {
-									"email": {
-										"type": "string",
-										"mock": {
-											"mock": "2703001087@qq.com"
+						"description": ""
+					},
+					"children": [
+						{
+							"target_type": "api",
+							"name": "发送邮箱验证码(注册)",
+							"mark": "developing",
+							"sort": 4,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/ask-code",
+							"request": {
+								"url": "http://localhost:8080/api/auth/ask-code?email=2703001087@qq.com&type=register",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								},
+								"query": {
+									"parameter": [
+										{
+											"description": "",
+											"is_checked": 1,
+											"key": "email",
+											"type": "Text",
+											"not_null": 1,
+											"field_type": "String",
+											"value": "2703001087@qq.com"
+										},
+										{
+											"description": "",
+											"is_checked": 1,
+											"key": "type",
+											"type": "Text",
+											"not_null": 1,
+											"field_type": "String",
+											"value": "register"
 										}
-									},
-									"code": {
-										"type": "string",
-										"mock": {
-											"mock": "834385"
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
 										}
 									}
 								},
-								"APIPOST_ORDERS": [
-									"email",
-									"code"
-								],
-								"required": []
-							}
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "刷新token",
-					"mark": "developing",
-					"sort": 8,
-					"tags": [],
-					"method": "GET",
-					"mock": "{}",
-					"mock_url": "/api/auth/refresh-token",
-					"request": {
-						"url": "http://localhost:8080/api/auth/refresh-token",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"header": {
-							"parameter": [
-								{
-									"description": "",
-									"field_type": "String",
-									"is_checked": 1,
-									"key": "Authorization",
-									"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdCIsImlkIjoxLCJleHAiOjE3MDM0OTI4NTQsImlhdCI6MTcwMjg4ODA1NCwianRpIjoiODUzODMxZDUtMGEyMi00ODE4LWI1ZDQtMTk5ZDAxYmE3YTBjIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV91c2VyIl19.hD42Nc3sZ6kwz7_7mH3Ay-vn-z3V7vb4SW2ds_lUdp0",
-									"not_null": 1,
-									"type": "Text"
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
 								}
-							]
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
+							},
+							"children": []
 						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "用户注册",
-					"mark": "developing",
-					"sort": 5,
-					"tags": [],
-					"method": "POST",
-					"mock": "{}",
-					"mock_url": "/api/auth/register",
-					"request": {
-						"url": "http://localhost:8080/api/auth/register",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"body": {
-							"mode": "json",
-							"parameter": [],
-							"raw": "{\n    \"email\":\"2703001087@qq.com\",\n    \"code\":\"653139\",\n    \"username\":\"admin\",\n    \"password\":\"123456\"\n}",
-							"raw_para": [],
-							"raw_schema": {
-								"type": "object"
-							}
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "测试接口",
-					"mark": "developing",
-					"sort": 1,
-					"tags": [],
-					"method": "GET",
-					"mock": "{}",
-					"mock_url": "/api/test/hello",
-					"request": {
-						"url": "http://localhost:8080/api/test/hello",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"body": {
-							"mode": "urlencoded",
-							"parameter": [
-								{
-									"description": "",
-									"field_type": "String",
-									"is_checked": 1,
-									"key": "",
-									"value": "",
-									"not_null": 1,
-									"type": "Text",
-									"static": true
-								}
-							],
-							"raw": "",
-							"raw_para": [],
-							"raw_schema": {
-								"type": "object"
-							}
-						},
-						"header": {
-							"parameter": [
-								{
-									"description": "",
-									"field_type": "String",
-									"is_checked": 1,
-									"key": "Authorization",
-									"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5bCP5Y-RIiwiaWQiOjEsImV4cCI6MTcwMzMzODI4NSwiaWF0IjoxNzAyNzMzNDg1LCJqdGkiOiI1N2U3ZDdkMy0yMGU1LTRmY2QtOTI3MC1kZjcxYzNjOWZiMjEiLCJhdXRob3JpdGllcyI6WyJST0xFX3VzZXIiXX0.-Xut2XpzpKrQH9W7cvdf1PCDB23b6XARLRjEEmNokVs",
-									"not_null": 1,
-									"type": "Text"
-								}
-							]
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "退出登录",
-					"mark": "developing",
-					"sort": 1,
-					"tags": [],
-					"method": "GET",
-					"mock": "{}",
-					"mock_url": "/api/auth/logout",
-					"request": {
-						"url": "http://localhost:8080/api/auth/logout",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"header": {
-							"parameter": [
-								{
-									"description": "",
-									"field_type": "String",
-									"is_checked": 1,
-									"key": "Authorization",
-									"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5bCP5Y-RIiwiaWQiOjEsImV4cCI6MTcwMzMzMzI2OSwiaWF0IjoxNzAyNzI4NDY5LCJqdGkiOiJiNzFlYmZhZC1mOGU3LTQ1YTQtOTllMi1lN2ExOWNlODE0YWMiLCJhdXRob3JpdGllcyI6W119.WV7UMssW5XeHfvTYXW6wfkGXdSNMEblmXSusuhck9_M",
-									"not_null": 1,
-									"type": "Text"
-								}
-							]
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "用户登录",
-					"mark": "developing",
-					"sort": 3,
-					"tags": [],
-					"method": "POST",
-					"mock": "{}",
-					"mock_url": "/api/auth/login",
-					"request": {
-						"url": "http://localhost:8080/api/auth/login",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"body": {
-							"mode": "urlencoded",
-							"parameter": [
-								{
-									"description": "",
-									"field_type": "String",
-									"is_checked": 1,
-									"key": "username",
-									"value": "test",
-									"not_null": 1,
-									"type": "Text"
+						{
+							"target_type": "api",
+							"name": "密码重置",
+							"mark": "developing",
+							"sort": 6,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/reset-confirm",
+							"request": {
+								"url": "http://localhost:8080/api/auth/reset-confirm",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
 								},
-								{
-									"description": "",
-									"field_type": "String",
-									"is_checked": 1,
-									"key": "password",
-									"value": "123456",
-									"not_null": 1,
-									"type": "Text"
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n\t\"email\": \"2703001087@qq.com\",\n\t\"code\": \"574687\",\n    \"password\":\"654321\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
 								}
-							],
-							"raw": "{\n    \"username\":\"test\",\n    \"password\":\"123456\"\n}",
-							"raw_para": [],
-							"raw_schema": {
-								"type": "object"
-							}
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
-						}
-					},
-					"children": []
-				},
-				{
-					"target_type": "api",
-					"name": "发送邮箱验证码(重置)",
-					"mark": "developing",
-					"sort": 6,
-					"tags": [],
-					"method": "GET",
-					"mock": "{}",
-					"mock_url": "/api/auth/ask-code",
-					"request": {
-						"url": "http://localhost:8080/api/auth/ask-code?email=2703001087@qq.com&type=reset",
-						"description": "",
-						"event": {
-							"pre_script": "",
-							"test": ""
-						},
-						"pre_tasks": [],
-						"post_tasks": [],
-						"query": {
-							"parameter": [
-								{
-									"description": "",
-									"is_checked": 1,
-									"key": "email",
-									"type": "Text",
-									"not_null": 1,
-									"field_type": "String",
-									"value": "2703001087@qq.com"
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
 								},
-								{
-									"description": "",
-									"is_checked": 1,
-									"key": "type",
-									"type": "Text",
-									"not_null": 1,
-									"field_type": "String",
-									"value": "reset"
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
 								}
-							]
-						}
-					},
-					"response": {
-						"success": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "成功",
-								"isDefault": 1,
-								"code": 200,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
+							},
+							"children": []
 						},
-						"error": {
-							"raw": "",
-							"parameter": [],
-							"expect": {
-								"name": "失败",
-								"isDefault": -1,
-								"code": 404,
-								"contentType": "json",
-								"verifyType": "schema",
-								"mock": "",
-								"schema": {}
-							}
+						{
+							"target_type": "api",
+							"name": "测试接口",
+							"mark": "developing",
+							"sort": 8,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/test/hello",
+							"request": {
+								"url": "http://localhost:8080/api/test/hello",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"body": {
+									"mode": "urlencoded",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "",
+											"value": "",
+											"not_null": 1,
+											"type": "Text",
+											"static": true
+										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5bCP5Y-RIiwiaWQiOjEsImV4cCI6MTcwMzMzODI4NSwiaWF0IjoxNzAyNzMzNDg1LCJqdGkiOiI1N2U3ZDdkMy0yMGU1LTRmY2QtOTI3MC1kZjcxYzNjOWZiMjEiLCJhdXRob3JpdGllcyI6WyJST0xFX3VzZXIiXX0.-Xut2XpzpKrQH9W7cvdf1PCDB23b6XARLRjEEmNokVs",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "升级VIP",
+							"mark": "developing",
+							"sort": 9,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/vip",
+							"request": {
+								"url": "http://localhost:8080/api/auth/vip",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"body": {
+									"mode": "json",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "email",
+											"value": "2703001087@qq.com",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "{\r\n    \"email\": \"2703001087@qq.com\"\r\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "发送邮箱验证码(重置)",
+							"mark": "developing",
+							"sort": 2,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/ask-code",
+							"request": {
+								"url": "http://localhost:8080/api/auth/ask-code?email=2703001087@qq.com&type=reset",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"query": {
+									"parameter": [
+										{
+											"description": "",
+											"is_checked": 1,
+											"key": "email",
+											"type": "Text",
+											"not_null": 1,
+											"field_type": "String",
+											"value": "2703001087@qq.com"
+										},
+										{
+											"description": "",
+											"is_checked": 1,
+											"key": "type",
+											"type": "Text",
+											"not_null": 1,
+											"field_type": "String",
+											"value": "reset"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "用户登录",
+							"mark": "developing",
+							"sort": 5,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/login",
+							"request": {
+								"url": "http://localhost:8080/api/auth/login",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"body": {
+									"mode": "urlencoded",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "username",
+											"value": "test",
+											"not_null": 1,
+											"type": "Text"
+										},
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "password",
+											"value": "123456",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "{\n    \"username\":\"test\",\n    \"password\":\"123456\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "密码重置请求",
+							"mark": "developing",
+							"sort": 1,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/reset-confirm",
+							"request": {
+								"url": "http://localhost:8080/api/auth/reset-confirm",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n\t\"email\": \"2703001087@qq.com\",\n\t\"code\": \"574687\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object",
+										"properties": {
+											"email": {
+												"type": "string",
+												"mock": {
+													"mock": "2703001087@qq.com"
+												}
+											},
+											"code": {
+												"type": "string",
+												"mock": {
+													"mock": "834385"
+												}
+											}
+										},
+										"APIPOST_ORDERS": [
+											"email",
+											"code"
+										],
+										"required": []
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "刷新token",
+							"mark": "developing",
+							"sort": 1,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/refresh-token",
+							"request": {
+								"url": "http://localhost:8080/api/auth/refresh-token",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdCIsImlkIjoxLCJleHAiOjE3MDM0OTI4NTQsImlhdCI6MTcwMjg4ODA1NCwianRpIjoiODUzODMxZDUtMGEyMi00ODE4LWI1ZDQtMTk5ZDAxYmE3YTBjIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV91c2VyIl19.hD42Nc3sZ6kwz7_7mH3Ay-vn-z3V7vb4SW2ds_lUdp0",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "退出登录",
+							"mark": "developing",
+							"sort": 7,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/logout",
+							"request": {
+								"url": "http://localhost:8080/api/auth/logout",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5bCP5Y-RIiwiaWQiOjEsImV4cCI6MTcwMzMzMzI2OSwiaWF0IjoxNzAyNzI4NDY5LCJqdGkiOiJiNzFlYmZhZC1mOGU3LTQ1YTQtOTllMi1lN2ExOWNlODE0YWMiLCJhdXRob3JpdGllcyI6W119.WV7UMssW5XeHfvTYXW6wfkGXdSNMEblmXSusuhck9_M",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "用户注册",
+							"mark": "developing",
+							"sort": 3,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/register",
+							"request": {
+								"url": "http://localhost:8080/api/auth/register",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n    \"email\":\"2703001087@qq.com\",\n    \"code\":\"653139\",\n    \"username\":\"admin\",\n    \"password\":\"123456\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {
+											"type": "object"
+										}
+									}
+								}
+							},
+							"children": []
 						}
-					},
-					"children": []
+					]
 				}
 			]
 		}
