@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 //todo:后续需要限制只有管理员才可以调用该方法
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/minio")
 @Tag(name = "Minio操作", description = "后台文件上传下载(删除有些bug,还没做)")
 public class MinioController {
     @Resource
@@ -45,5 +45,16 @@ public class MinioController {
         boolean flag = minioService.downloadFile(url,path);
         if(flag) return RestBean.success("下载成功");
         else return RestBean.faliure(500,"下载失败");
+    }
+
+    /**
+     * 生成文件分享url
+     * @param url 文件名称,格式为"2023-12-24/21软工-《Java Web开发》期末作品要求.docx",后续命名方式会更新
+     * @param time 文件分享时间，单位为小时
+     * @return 是否注册成功
+     */
+    @GetMapping("/shareFile")
+    public RestBean<String> shareFile(@RequestParam String url, @RequestParam int time){
+        return RestBean.success(minioService.shareFile(url,time));
     }
 }

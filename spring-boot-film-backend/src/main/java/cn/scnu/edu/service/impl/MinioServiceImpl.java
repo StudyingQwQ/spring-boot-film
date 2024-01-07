@@ -4,6 +4,7 @@ import cn.scnu.edu.entity.dto.MinioPojo;
 import cn.scnu.edu.service.MinioService;
 import io.minio.*;
 import io.minio.errors.MinioException;
+import io.minio.http.Method;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,5 +68,23 @@ public class MinioServiceImpl implements MinioService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public String shareFile(String url, int time) {
+        try{
+            String shareUrl =
+                    minioClient.getPresignedObjectUrl(
+                            GetPresignedObjectUrlArgs.builder()
+                                    .method(Method.GET)
+                                    .bucket(minioPojo.getBucketName())
+                                    .object(url)
+                                    .expiry(60 * 60 * time)//时间，单位为小时
+                                    .build());
+            return shareUrl;
+        }catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

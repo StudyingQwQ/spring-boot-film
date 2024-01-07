@@ -100,7 +100,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         if (existsAccountByEmail(email)) return "该邮箱已被注册";
         if (existsAccountByUsername(username)) return "该用户名已被注册";
         String password = encoder.encode(vo.getPassword());
-        Account account = new Account(null,vo.getUsername(), password, vo.getEmail(), "user",500, new Date());
+        Account account = new Account(null,vo.getUsername(), password, vo.getEmail(), "USER",500, new Date());
         if(this.save(account)){
             stringRedisTemplate.delete(key);
             return null;
@@ -131,7 +131,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     public String setVip(String email) {
         Account account = this.findAccountByNameOrEmail(email);
         if(account.getPoints()<1000) return "您的积分不足以升级";
-        this.update().eq("email",email).set("role","vip").set("points",account.getPoints()-1000).update();
+        this.update().eq("email",email).set("role","VIP").set("points",account.getPoints()-1000).update();
 //        Integer points = accountMapper.selectOne(queryWrapper).getPoints();
 //        if(points<1000) return "您的积分不足以升级";
 //        this.update().eq("email",email).set("role","vip").set("points",points-1000).update();
