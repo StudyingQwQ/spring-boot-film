@@ -24,7 +24,7 @@ public class MinioServiceImpl implements MinioService {
     private MinioPojo minioPojo;
     //todo:后续要实现分片上传
     @Override
-    public String uploadFile(String bucketName, MultipartFile file) {
+    public String uploadFile(String bucketName, String folderName, MultipartFile file) {
         try {
             //判断桶是否存在
             boolean bucketExists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
@@ -32,10 +32,8 @@ public class MinioServiceImpl implements MinioService {
                 //如果不存在，就创建桶
                 minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
             }
-            //本地时间，具体到年、月、日
-            String yyyymmdd = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             //String uuid= UUID.randomUUID().toString();
-            String filename = yyyymmdd+"/"+file.getOriginalFilename();
+            String filename = folderName+"/"+file.getOriginalFilename();
             //加一个/表示创建一个文件夹
             minioClient.putObject(PutObjectArgs.builder().
                     bucket(bucketName).

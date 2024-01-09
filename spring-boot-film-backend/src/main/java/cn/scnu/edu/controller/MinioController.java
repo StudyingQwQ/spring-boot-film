@@ -27,8 +27,8 @@ public class MinioController {
      * @return 是否上传成功
      */
     @PostMapping("/uploadFile")
-    public RestBean<String> aa(MultipartFile file){
-        String url = minioService.uploadFile(minioPojo.getBucketName(), file);
+    public RestBean<String> uploadObject(MultipartFile file, @RequestParam String folderName) {
+        String url = minioService.uploadFile(minioPojo.getBucketName(), folderName, file);
         return RestBean.success(url);
     }
 

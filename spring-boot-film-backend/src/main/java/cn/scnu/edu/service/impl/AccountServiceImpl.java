@@ -124,7 +124,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 
     /**
      * 升级vip
-     * @param email 升级用户的邮箱
+     * @param email 升级用户为VIP
      * @return 操作结果，null表示正常，否则为错误原因
      */
     @Override
