@@ -27,7 +27,11 @@ const router = createRouter({
             path: '/index',
             name: 'index',
             component: () => import("@/views/indexView.vue"),
-        }
+        }, {
+                     path: '/detail',
+                     name: 'film-detail',
+                     component: () => import("@/views/index/Background.vue"),
+                 }
     ],
 })
 //路由前置守卫
