@@ -17,4 +17,10 @@ public interface FilmService extends IService<Film> {
     List<Film> getFilm();
 
     Page<Film> getFilmList(RequestParamVO vo);
+
+    List<Film> getFilmListbyType(String type, String key);
+
+    List<Film> sortFilmList(String type);
+
+    Film getFilmbyId(Integer id);
 }

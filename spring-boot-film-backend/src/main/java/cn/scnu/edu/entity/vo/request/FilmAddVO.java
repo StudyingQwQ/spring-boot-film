@@ -14,7 +14,7 @@ public class FilmAddVO {
     String type;
     String actor;
     String region;
-    String good;
+    double good;
     Integer wheat;
     Integer mheat;
     String time;

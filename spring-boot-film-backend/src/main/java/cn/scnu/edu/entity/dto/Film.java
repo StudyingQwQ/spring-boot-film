@@ -1,9 +1,12 @@
 package cn.scnu.edu.entity.dto;
 
 import cn.scnu.edu.entity.BaseData;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -23,9 +26,10 @@ public class Film implements BaseData {
     String type;
     String actor;
     String region;
-    String good;
+    double good;
     Integer wheat;
     Integer mheat;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     Date time;
     String picurl;
     String filmurl;

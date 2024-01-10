@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 电影信息处理相关服务
@@ -56,10 +57,39 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements Fi
         QueryWrapper<Film> queryWrapper = new QueryWrapper<>();
         if(vo.getKeyword()!=null)
             queryWrapper.like("name", vo.getKeyword());
-        if(vo.getActorKeyword()!=null)
-            queryWrapper.like("actor", vo.getActorKeyword());
         return this.baseMapper.selectPage(page, queryWrapper);
 
+    }
+
+    @Override
+    public List<Film> getFilmListbyType(String type, String key) {
+        if(Objects.equals(type, "type")){
+            return this.baseMapper.selectList(Wrappers.<Film>query().eq("type", key));
+        } else if (Objects.equals(type, "region")) {
+            return this.baseMapper.selectList(Wrappers.<Film>query().eq("region", key));
+        } else if (Objects.equals(type,"actor")) {
+            return this.baseMapper.selectList(Wrappers.<Film>query().like("actor", key));
+        }
+        return null;
+    }
+
+    @Override
+    public List<Film> sortFilmList(String type) {
+        QueryWrapper<Film> queryWrapper = new QueryWrapper<>();
+        if(Objects.equals(type, "good")){
+            queryWrapper.orderByDesc("good");
+        } else if (Objects.equals(type, "wheat")) {
+            queryWrapper.orderByDesc("wheat");
+
+        } else if (Objects.equals(type, "mheat")) {
+            queryWrapper.orderByDesc("mheat");
+        }
+        return this.baseMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public Film getFilmbyId(Integer id) {
+        return this.baseMapper.selectById(id);
     }
 
     private boolean existsFilmByName(String name){

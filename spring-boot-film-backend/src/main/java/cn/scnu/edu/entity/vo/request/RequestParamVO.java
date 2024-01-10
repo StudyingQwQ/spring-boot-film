@@ -9,5 +9,4 @@ public class RequestParamVO {
     Integer pageNum;
     Integer pageSize;
     String keyword;
-    String actorKeyword;
 }

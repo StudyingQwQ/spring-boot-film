@@ -52,8 +52,9 @@ public class  SecurityConfiguration {
                 .authorizeHttpRequests(conf->conf
                         .requestMatchers("/api/auth/**","/error").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/api/film/getFilm","/api/film/list").permitAll()
+                        .requestMatchers("/api/film/**").permitAll()
                         .requestMatchers("/api/minio/**").hasRole("ADMIN")//限制管理员权限
+                        .requestMatchers("/api/export/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(conf->conf
