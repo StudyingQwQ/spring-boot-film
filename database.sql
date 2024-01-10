@@ -19,7 +19,7 @@ CREATE TABLE `db_account`  (
                                PRIMARY KEY (`id`) USING BTREE,
                                UNIQUE INDEX `unique_email`(`email`) USING BTREE,
                                UNIQUE INDEX `unique_username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
 -- ----------------------------

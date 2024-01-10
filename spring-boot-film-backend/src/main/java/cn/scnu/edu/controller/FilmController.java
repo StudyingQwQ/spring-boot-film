@@ -3,6 +3,7 @@ package cn.scnu.edu.controller;
 import cn.scnu.edu.entity.RestBean;
 import cn.scnu.edu.entity.dto.Film;
 import cn.scnu.edu.entity.vo.request.FilmAddVO;
+import cn.scnu.edu.entity.vo.request.RequestParamVO;
 import cn.scnu.edu.service.FilmService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -38,10 +39,23 @@ public class FilmController {
     }
     /**
      * 电影列表
+     *
      * @return 电影所有信息，前端信息请自行选择
      */
     @GetMapping("/getFilm")
     public RestBean<List<Film>> getFilm(){
         return RestBean.success(filmService.getFilm());
+    }
+
+    /**
+     * 电影列表
+     * @return 电影所有信息，前端信息请自行选择
+     */
+    @PostMapping("/list")
+    public RestBean<?> filmList(@RequestBody RequestParamVO vo){
+        if (filmService.getFilmList(vo) == null) {
+            return RestBean.faliure(400,"查询失败");
+        }
+        return RestBean.success(filmService.getFilmList(vo));
     }
 }

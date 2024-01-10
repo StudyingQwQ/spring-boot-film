@@ -2,9 +2,12 @@ package cn.scnu.edu.service.impl;
 
 import cn.scnu.edu.entity.dto.Film;
 import cn.scnu.edu.entity.vo.request.FilmAddVO;
+import cn.scnu.edu.entity.vo.request.RequestParamVO;
 import cn.scnu.edu.mapper.FilmMapper;
 import cn.scnu.edu.service.FilmService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +45,21 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements Fi
     @Override
     public List<Film> getFilm() {
         return this.baseMapper.selectList(null);
+    }
+
+    @Override
+    public Page<Film> getFilmList(RequestParamVO vo) {
+        if(vo.getPageNum()==null||vo.getPageSize()==null){
+            return null;
+        }
+        Page<Film> page = new Page<>(vo.getPageNum(),vo.getPageSize());
+        QueryWrapper<Film> queryWrapper = new QueryWrapper<>();
+        if(vo.getKeyword()!=null)
+            queryWrapper.like("name", vo.getKeyword());
+        if(vo.getActorKeyword()!=null)
+            queryWrapper.like("actor", vo.getActorKeyword());
+        return this.baseMapper.selectPage(page, queryWrapper);
+
     }
 
     private boolean existsFilmByName(String name){
