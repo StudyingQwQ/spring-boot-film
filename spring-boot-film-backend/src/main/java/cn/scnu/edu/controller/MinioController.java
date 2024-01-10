@@ -5,13 +5,13 @@ import cn.scnu.edu.entity.dto.MinioPojo;
 import cn.scnu.edu.service.MinioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Minio操作
  */
-//todo:后续需要限制只有管理员才可以调用该方法
 @RestController
 @RequestMapping("/api/minio")
 @Tag(name = "Minio操作", description = "后台文件上传下载(删除有些bug,还没做)")

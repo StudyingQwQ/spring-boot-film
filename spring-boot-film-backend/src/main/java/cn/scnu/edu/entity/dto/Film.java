@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * 数据库中的电影信息
+ * 数据库电影信息
  */
 @Data
 @TableName("db_film")

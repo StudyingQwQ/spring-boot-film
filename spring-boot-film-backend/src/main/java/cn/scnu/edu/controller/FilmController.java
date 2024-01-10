@@ -1,14 +1,15 @@
 package cn.scnu.edu.controller;
 
 import cn.scnu.edu.entity.RestBean;
+import cn.scnu.edu.entity.dto.Film;
 import cn.scnu.edu.entity.vo.request.FilmAddVO;
 import cn.scnu.edu.service.FilmService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/film")
@@ -22,9 +23,25 @@ public class FilmController {
      * @return 是否上传成功
      */
     @PostMapping("/addFilm")
-    public RestBean<String> addFilm(@RequestBody FilmAddVO vo){
+    public RestBean<String> addFilm(@RequestBody FilmAddVO vo) throws ParseException {
         if(filmService.addFilm(vo))
             return RestBean.success("电影添加成功");
         return RestBean.faliure(400,"电影添加失败");
+    }
+
+    @PostMapping("/deleteFilm")
+    public RestBean<String> deleteFilm(@RequestParam String name){
+        if(filmService.deleteFilm(name))
+            return RestBean.success("电影删除成功");
+        return RestBean.faliure(400,"电影删除失败或电影不存在");
+
+    }
+    /**
+     * 电影列表
+     * @return 电影所有信息，前端信息请自行选择
+     */
+    @GetMapping("/getFilm")
+    public RestBean<List<Film>> getFilm(){
+        return RestBean.success(filmService.getFilm());
     }
 }

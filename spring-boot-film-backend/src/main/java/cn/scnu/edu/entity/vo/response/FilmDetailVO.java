@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 /**
- * 电影详情信息响应
+ * 电影的详情信息响应
  */
 @Data
 public class FilmDetailVO {

@@ -1,4 +1,13 @@
+minio:
+  url: http://localhost:9000
+  username: minioadmin
+  password: minioadmin
+  bucketName: test
 spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   mail:
     host: smtp.163.com
     username: 13760831277@163.com
@@ -15,7 +24,7 @@ spring:
       key: spring-boot-film
       expire: 7
   datasource:
-    url: jdbc:mysql://localhost:3309/film
+    url: jdbc:mysql://localhost:3306/film
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
