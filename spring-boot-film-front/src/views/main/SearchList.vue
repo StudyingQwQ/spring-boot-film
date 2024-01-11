@@ -9,8 +9,8 @@
        <div class="text">
 
          <div  class="title" style="display: block;">{{item.name}}</div>
-        <div  class="actor" style="display: block;">{{item.actor+'        '+item.region}}</div>
-         <div  class="type" style="display: block;">{{item.actor+'        '+item.region}}</div>
+        <div  class="actor" style="display: block;">{{item.type+' '+item.actor+' '+item.region}}</div>
+         <div  class="type" style="display: block;">{{item.good}}</div>
          <div  class="intro" style="display: block;">{{item.intro}}</div>
 
        </div>
@@ -82,7 +82,7 @@ width: 600px; /* 你可以根据需要调整这个值 */
   line-height: 1.2;
 }
 .bt{
-margin-top:-900px;
+margin-top:-880px;
 margin-left:500xp;
 }
 </style>
@@ -93,7 +93,8 @@ import axios from 'axios';
 export default {
   data() {
     return {
-    actor:'',
+    key:'',
+    type:'',
       items: []
     };
   },

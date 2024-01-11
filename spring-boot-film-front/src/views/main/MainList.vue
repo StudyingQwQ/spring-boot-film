@@ -9,8 +9,8 @@
        <div class="text">
 
          <div  class="title" style="display: block;">{{item.name}}</div>
-        <div  class="actor" style="display: block;">{{item.actor+'        '+item.region}}</div>
-         <div  class="type" style="display: block;">{{item.actor+'        '+item.region}}</div>
+        <div  class="actor" style="display: block;">{{item.type+' '+item.actor+' '+item.region}}</div>
+         <div  class="type" style="display: block;">{{item.good}}</div>
          <div  class="intro" style="display: block;">{{item.intro}}</div>
 
        </div>
@@ -81,30 +81,26 @@ width: 600px; /* 你可以根据需要调整这个值 */
   line-height: 1.2;
 }
 .bt{
-margin-top:-900px;
+margin-top:-880px;
 margin-left:500xp;
 }
 </style>
-<script>
-import axios from 'axios';
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
 
-export default {
-  data() {
-    return {
-      items: []
-    };
-  },
-  async created() {
-    const response = await axios.get('http://localhost:8080/api/film/getFilm');
-    this.items = response.data.data;
-console.log(response.data.data);
-  },
-methods: {
-    goToDetail(id) {
-      // 使用你的路由库跳转到详情页面，例如：
-      router.push({ path: 'detail', params: { id } });
-      console.log(`Go to details of ${id}`);
-    }
-  }
-};
+// data
+const items = ref({})
+
+// created
+const response = await axios.get('http://localhost:8080/api/film/getFilm')
+items.value = response.data.data
+console.log(items.value)
+
+// methods
+function goToDetail(id) {
+  // 使用你的路由库跳转到详情页面，例如：
+  router.push({path: 'detail', params: {id}})
+  console.log(`Go to details of ${id}`)
+}
 </script>
