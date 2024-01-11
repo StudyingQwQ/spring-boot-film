@@ -73,7 +73,13 @@ const rules = {
 function userLogin() {
   formRef.value.validate((isValid) => {
     if(isValid) {
-      login(form.username, form.password, form.remember, () => router.push("/index"))
+      login(form.username, form.password, form.remember, (data) => {
+        if (data.role === "ADMIN" ){
+          router.push("/admin")
+        } else {
+          router.push("/index")
+        }
+      });
     }
   });
 }

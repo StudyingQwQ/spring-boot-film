@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import {unauthorized} from "@/net/index.js";
+import {adminAuth, unauthorized} from "@/net/index.js";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,23 +23,34 @@ const router = createRouter({
                     component: () => import("@/views/welcome/ForgetPage.vue")
                 }
             ]
-        }, {
+        },
+        {
             path: '/index',
             name: 'index',
             component: () => import("@/views/indexView.vue"),
-        }, {
-                     path: '/detail',
-                     name: 'film-detail',
-                     component: () => import("@/views/index/Background.vue"),
-                 }
+        },
+        {
+            path: '/detail',
+            name: 'film-detail',
+            component: () => import("@/views/index/Background.vue"),
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: () => import("@/views/admin/AdminView.vue"),
+        }
+
     ],
 })
 //路由前置守卫
 router.beforeEach((to, from, next) => {
     const isUnauthorized = unauthorized()
+    const admin = adminAuth()
     if(to.name.startsWith('welcome') && !isUnauthorized) {
         next('/index')
     } else if(to.fullPath.startsWith('/index') && isUnauthorized) {
+        next('/')
+    } else if(to.fullPath.startsWith('/admin') && !admin) {
         next('/')
     } else {
         next()
