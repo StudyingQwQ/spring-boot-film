@@ -2,7 +2,7 @@
 
 - top 上方导航栏 ✔
 -   index 首页  ✔
--   search 搜索页(以及浏览页在一起) 
+-   search 搜索页(以及浏览页在一起) ✔
 -   filmDetail 详情页 
 -   trending 热门电影页 
 -   login 登录 ✔
