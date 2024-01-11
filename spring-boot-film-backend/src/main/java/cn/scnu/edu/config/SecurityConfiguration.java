@@ -95,6 +95,7 @@ public class  SecurityConfiguration {
         AuthrizeVO vo = account.asViewObject(AuthrizeVO.class, v -> {
             v.setExpire(utils.expireTime());
             v.setToken(token);
+            v.setEmail(account.getEmail());
         });
 
         response.getWriter().write(RestBean.success(vo).asJsonString());
