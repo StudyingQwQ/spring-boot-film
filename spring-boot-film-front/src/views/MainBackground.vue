@@ -38,7 +38,7 @@
       >
 
           <el-menu-item index="1" >热播</el-menu-item>
-          <el-menu-item index="4">评分</el-menu-item>
+          <el-menu-item index="4" @click="SortByType('good')">评分</el-menu-item>
 
           <el-menu-item index="2">类型</el-menu-item>
             <el-menu-item class="chooseitem" index="2-1" @click="SearchById('type','历史')">历史</el-menu-item>
@@ -168,7 +168,7 @@ import {ElMessage} from "element-plus";
         if(this.token==''){
         this.$router.push('/');
         }
-            this.type=type;
+
             try {
                     const response = await axios.post('http://localhost:8080/api/film/getFilmListbyType'
                      , {
@@ -197,6 +197,13 @@ import {ElMessage} from "element-plus";
                   } catch (error) {
                     console.error(error);
                   }
+                },
+
+                async SortByType(type){
+                        this.$router.push({path: '/main',
+                         query: {
+                         type:type
+                              }});
                 }
         }
       }

@@ -15,7 +15,7 @@
 
        </div>
 
-       <el-button class="bt" type="success">查看详情</el-button>
+       <el-button class="bt" type="success" @click="goToDetail(item.id)">查看详情</el-button>
 
 
 
@@ -88,6 +88,10 @@ margin-left:500xp;
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 // data
 const items = ref({})
@@ -100,7 +104,7 @@ console.log(items.value)
 // methods
 function goToDetail(id) {
   // 使用你的路由库跳转到详情页面，例如：
-  router.push({path: 'detail', params: {id}})
+  router.push({path: '/main/detail', params: {id}})
   console.log(`Go to details of ${id}`)
 }
 </script>
