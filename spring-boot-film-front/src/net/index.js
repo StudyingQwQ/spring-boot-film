@@ -98,12 +98,4 @@ function unauthorized() {
     return !takeAccessToken()
 }
 
-function adminAuth() {
-    if(!unauthorized()) {
-        const role = takeAccessToken().role
-        return role === "ADMIN"
-    }
-    return false
-}
-
-export { post, get, login, logout, unauthorized, adminAuth }
+export { post, get, login, logout, unauthorized }
