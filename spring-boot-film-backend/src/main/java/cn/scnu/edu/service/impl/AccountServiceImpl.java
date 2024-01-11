@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -133,6 +134,11 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         if(account.getPoints()<1000) return "您的积分不足以升级";
         this.update().eq("email",email).set("role","VIP").set("points",account.getPoints()-1000).update();
         return null;
+    }
+
+    @Override
+    public List<Account> getAccounts() {
+        return this.baseMapper.selectList(null);
     }
 
     /**

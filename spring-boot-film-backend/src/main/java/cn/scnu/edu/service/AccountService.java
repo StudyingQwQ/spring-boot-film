@@ -7,6 +7,8 @@ import cn.scnu.edu.entity.vo.request.EmailResetVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
+
 public interface AccountService extends IService<Account>, UserDetailsService {
     Account findAccountByNameOrEmail(String text);
     String registerEmailVerifyCode(String type, String email, String ip);
@@ -14,4 +16,6 @@ public interface AccountService extends IService<Account>, UserDetailsService {
     String resetEmailAccountPassword(EmailResetVO vo);
     String resetConfirm(ConfirmResetVO vo);
     String setVip(String email);
+
+    List<Account> getAccounts();
 }
