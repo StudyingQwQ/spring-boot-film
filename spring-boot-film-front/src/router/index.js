@@ -33,7 +33,7 @@ const router = createRouter({
             component: () => import("@/views/MainBackground.vue"),
             children: [
                             {
-                                path: "/list",
+                                path: "",
                                 name: "list",
                                 component: () => import("@/views/main/MainList.vue"),
                             },{
