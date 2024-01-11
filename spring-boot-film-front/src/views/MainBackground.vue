@@ -20,7 +20,7 @@
 
        </div></el-col>
        <el-col :span="10">
-            <el-input v-model="searchId" placeholder="请输入电影id"></el-input>
+            <el-input v-model="searchActor" placeholder="请输入主演"></el-input>
        </el-col>
 <el-col :span="4">
 <el-button type="primary" @click="SearchById(searchId)">搜索</el-button>
@@ -123,6 +123,10 @@
   }
 
   .el-menu-item{
+  border: 1px solid #333;
+ font-size: 20px; /* 根据需要调整字体大小 */
+     font-weight: bold; /* 字体加粗 */
+
   background-color: #D3DCE6;
       color: #333;
       text-align: center;
@@ -141,8 +145,9 @@ import {ElMessage} from "element-plus";
         circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
         sizeList: ["large"],
-        searchId:'',
+        searchActor:'',
         token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoicXdlciIsImlkIjo0LCJleHAiOjE3MDU1ODAxNzcsImlhdCI6MTcwNDk3NTM3NywianRpIjoiN2E4ZjdlYWItMDVmZi00ZmNkLTg0ZDUtMDk0M2Y2ZDU3NjRjIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl19.jmwNCltUVSXSNR6vC1kWEvUvhwTfU-ZJMEyifmWtTqM',
+        type:'',
       }
     },
     methods: {
@@ -151,9 +156,9 @@ import {ElMessage} from "element-plus";
         if(this.token==''){
         this.$router.push('/');
         }
-        console.log(this.token);
+            this.type='actor';
             try {
-                    const response = await axios.post('http://localhost:8080/api/film/getFilmbyId'
+                    const response = await axios.post('http://localhost:8080/api/film/getFilmListbyType'
                      , {
                         headers: {
                         Authorization: 'Bearer ' + this.token// 这里的token是你的Bearer token
@@ -161,12 +166,19 @@ import {ElMessage} from "element-plus";
                      }
                     ,{
                         params:{
-                            id:this.searchId
+                        type:this.type,
+                        key:this.searchActor
                         }
                     });
                     console.log(response.data);
-                    if (response.data.success) {
-                      this.$router.push('/targetPage');
+                    if (response.data.data!='') {
+                    console.log('jump');
+                      this.$router.push({path: '/main/search',
+                         query: {key:this.searchActor,
+                         type:this.type
+                              }});
+
+
                     } else {
                       // 处理错误
                     }
