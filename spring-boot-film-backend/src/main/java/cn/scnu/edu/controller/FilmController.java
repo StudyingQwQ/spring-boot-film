@@ -62,7 +62,7 @@ public class FilmController {
         return RestBean.success(filmService.getFilmList(vo));
     }
     /**
-     * 电影按地区和类型获取列表
+     * 电影按地区和类型和演员获取列表
      * @param type 类型
      * @param key 查询关键字
      * @return 电影所有信息，前端信息请自行选择
