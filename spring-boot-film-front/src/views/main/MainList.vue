@@ -4,7 +4,7 @@
 
       <li v-for="item in items" :key="item.id" >
 
-        <img src="/public/favicon.ico" @click="goToDetail(item.id)" style="width: 250px; height: 300px;">
+        <img :src="item.picurl"  style="width: 250px; height: 300px;">
 
        <div class="text">
 
@@ -12,9 +12,10 @@
         <div  class="actor" style="display: block;">{{item.actor+'        '+item.region}}</div>
          <div  class="type" style="display: block;">{{item.actor+'        '+item.region}}</div>
          <div  class="intro" style="display: block;">{{item.intro}}</div>
+
        </div>
 
-       <el-button type="success">查看详情</el-button>
+       <el-button class="bt" type="success">查看详情</el-button>
 
 
 
@@ -30,7 +31,7 @@
 <style>
 li{
  height: 310px;
-
+width: 1160px;
 
 
 }
@@ -40,13 +41,15 @@ display: flex;
   }
 
   .text{
+  width: 1160px;
   display:flex;
   flex-direction: column;
   }
 .title{
 height:20px;
+width: 1160px;
 display: flex;
-font-size: 20px; /* 根据需要调整字体大小 */
+font-size: 25px; /* 根据需要调整字体大小 */
     font-weight: bold; /* 字体加粗 */
 margin-top:-700px;
 
@@ -77,9 +80,9 @@ width: 600px; /* 你可以根据需要调整这个值 */
   word-wrap: break-word;
   line-height: 1.2;
 }
-.el-button{
+.bt{
 margin-top:-900px;
-margin-left:auto;
+margin-left:500xp;
 }
 </style>
 <script>
