@@ -72,11 +72,8 @@ const rules = {
 
 function userLogin() {
   formRef.value.validate((isValid) => {
-    if(isValid) {    this.$store.commit('setUser', form.username);
-                     this.$store.commit('setPwd', form.password);
-                     console.log(this.$store.state.username);
+    if(isValid) {
       login(form.username, form.password, form.remember, (data) => {
-
         if (data.role === "ADMIN" ){
           router.push("/admin")
         } else {
