@@ -20,7 +20,7 @@
 
        </div></el-col>
        <el-col :span="15">
-            <el-input v-model="search" placeholder="请输入电影id"></el-input>
+            <el-input v-model="searchId" placeholder="请输入电影id"></el-input>
        </el-col>
        <el-col :span="3">
        <el-button type="primary" icon="el-icon-search" @click="SearchById">搜索</el-button>
@@ -33,8 +33,7 @@
       <el-menu
         default-active="1"
         class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
+
       >
 
           <template slot="title"><i class="el-icon-location"></i>导航一</template>
@@ -49,8 +48,12 @@
         <!-- 更多菜单项... -->
       </el-menu>
       </el-aside>
-      <el-main>
-        <div><img src="/public/favicon.ico"></div>
+      <el-main height="800px">
+        <div><router-view v-slot="{ Component }">
+                     <transition name="el-fade-in-linear" mode="out-in">
+                       <component :is="Component" style="height: 100%"/>
+                     </transition>
+                   </router-view></div>
       </el-main>
     </el-container>
   </el-container>
@@ -103,7 +106,7 @@
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 1600px;
+    line-height: 800px;
   }
 
   body > .el-container {
