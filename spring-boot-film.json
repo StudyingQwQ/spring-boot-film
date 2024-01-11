@@ -49,7 +49,7 @@
 					"target_type": "folder",
 					"name": "文件操作",
 					"mark": "developing",
-					"sort": 11,
+					"sort": 2,
 					"tags": [],
 					"request": {
 						"description": ""
@@ -57,20 +57,22 @@
 					"children": [
 						{
 							"target_type": "api",
-							"name": "文件上传",
+							"name": "文件上传测试",
 							"mark": "developing",
 							"sort": 1,
 							"tags": [],
 							"method": "POST",
 							"mock": "{}",
-							"mock_url": "/api/auth/uploadFile",
+							"mock_url": "/api/minio/uploadFile",
 							"request": {
-								"url": "http://localhost:8080/api/auth/uploadFile",
+								"url": "http://localhost:8080/api/minio/uploadFile",
 								"description": "",
 								"event": {
 									"pre_script": "",
 									"test": ""
 								},
+								"pre_tasks": [],
+								"post_tasks": [],
 								"body": {
 									"mode": "form-data",
 									"parameter": [
@@ -80,12 +82,363 @@
 											"is_checked": 1,
 											"key": "file",
 											"value": [
-												"D:\\Desktop\\score.png"
+												"/home/hhd25z/下载/1.基于API的Redis缓存实现+自定义Redis缓存序列化机制.docx"
 											],
 											"not_null": 1,
 											"type": "File",
-											"filename": "score.png",
+											"filename": "1.基于API的Redis缓存实现+自定义Redis缓存序列化机制.docx",
 											"fileBase64": []
+										},
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "folderName",
+											"value": "test",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYWRtaW4iLCJpZCI6NSwiZXhwIjoxNzA1NDU0ODU5LCJpYXQiOjE3MDQ4NTAwNTksImp0aSI6Ijk0NzhjNTFlLTIwNzMtNDdiNC05YzQ3LWI2YTdiZTU2ODI5MyIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXX0.ixI1FWvYub_-2pjcpcA-eQQukN2dLS9v7e3Ofkz1_xw",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "文件下载",
+							"mark": "developing",
+							"sort": 1,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/minio/downloadFile",
+							"request": {
+								"url": "http://localhost:8080/api/minio/downloadFile",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "url",
+											"value": "2023-12-24/参考答案.doc",
+											"not_null": 1,
+											"type": "Text"
+										},
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "path",
+											"value": "/home/hhd25z/temp/",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "{\n    \"url\": \"2023-12-24/21软工-《Java Web开发》期末作品要求.docx\",\n    \"path\":\"/home/hhd25z/temp/temp\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "文件分享连接生成",
+							"mark": "developing",
+							"sort": 2,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/minio/shareFile",
+							"request": {
+								"url": "http://localhost:8080/api/minio/shareFile",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "url",
+											"value": "2024-01-06/2024-01-05_16-02.png",
+											"not_null": 1,
+											"type": "Text"
+										},
+										{
+											"description": "",
+											"field_type": "Integer",
+											"is_checked": 1,
+											"key": "time",
+											"value": "24",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdCIsImlkIjo1LCJleHAiOjE3MDUxNTU4NDYsImlhdCI6MTcwNDU1MTA0NiwianRpIjoiNTY5NDc5NzAtMDg5OS00NTY3LWEzYjYtYTg2YThlNzI2NTY2IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV92aXAiXX0.VaEG_krhtwPgHteOnQsJicQ6OWRIbhhbc8SFy4IQbew",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						}
+					]
+				},
+				{
+					"target_type": "api",
+					"name": "测试接口",
+					"mark": "developing",
+					"sort": 1,
+					"tags": [],
+					"method": "GET",
+					"mock": "{}",
+					"mock_url": "/api/test/hello",
+					"request": {
+						"url": "http://localhost:8080/api/test/hello",
+						"description": "",
+						"event": {
+							"pre_script": "",
+							"test": ""
+						},
+						"pre_tasks": [],
+						"post_tasks": [],
+						"body": {
+							"mode": "urlencoded",
+							"parameter": [
+								{
+									"description": "",
+									"field_type": "String",
+									"is_checked": 1,
+									"key": "",
+									"value": "",
+									"not_null": 1,
+									"type": "Text",
+									"static": true
+								}
+							],
+							"raw": "",
+							"raw_para": [],
+							"raw_schema": {
+								"type": "object"
+							}
+						},
+						"header": {
+							"parameter": [
+								{
+									"description": "",
+									"field_type": "String",
+									"is_checked": 1,
+									"key": "Authorization",
+									"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5bCP5Y-RIiwiaWQiOjEsImV4cCI6MTcwMzMzODI4NSwiaWF0IjoxNzAyNzMzNDg1LCJqdGkiOiI1N2U3ZDdkMy0yMGU1LTRmY2QtOTI3MC1kZjcxYzNjOWZiMjEiLCJhdXRob3JpdGllcyI6WyJST0xFX3VzZXIiXX0.-Xut2XpzpKrQH9W7cvdf1PCDB23b6XARLRjEEmNokVs",
+									"not_null": 1,
+									"type": "Text"
+								}
+							]
+						}
+					},
+					"response": {
+						"success": {
+							"raw": "",
+							"parameter": [],
+							"expect": {
+								"name": "成功",
+								"isDefault": 1,
+								"code": 200,
+								"contentType": "json",
+								"verifyType": "schema",
+								"mock": "",
+								"schema": {}
+							}
+						},
+						"error": {
+							"raw": "",
+							"parameter": [],
+							"expect": {
+								"name": "失败",
+								"isDefault": -1,
+								"code": 404,
+								"contentType": "json",
+								"verifyType": "schema",
+								"mock": "",
+								"schema": {}
+							}
+						}
+					},
+					"children": []
+				},
+				{
+					"target_type": "folder",
+					"name": "电影操作",
+					"mark": "developing",
+					"sort": 3,
+					"tags": [],
+					"request": {
+						"description": ""
+					},
+					"children": [
+						{
+							"target_type": "api",
+							"name": "电影排序",
+							"mark": "developing",
+							"sort": 3,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/film/sortFilmList",
+							"request": {
+								"url": "http://localhost:8080/api/film/sortFilmList",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "type",
+											"value": "good",
+											"not_null": 1,
+											"type": "Text"
 										}
 									],
 									"raw": "",
@@ -127,19 +480,376 @@
 						},
 						{
 							"target_type": "api",
-							"name": "文件下载",
+							"name": "获取所有电影",
 							"mark": "developing",
 							"sort": 2,
 							"tags": [],
-							"method": "POST",
+							"method": "GET",
 							"mock": "{}",
-							"mock_url": "",
+							"mock_url": "/api/film/getFilm",
 							"request": {
-								"url": "",
+								"url": "http://localhost:8080/api/film/getFilm",
 								"description": "",
 								"event": {
 									"pre_script": "",
 									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": []
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "电影详情",
+							"mark": "developing",
+							"sort": 5,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/film/getFilmbyId",
+							"request": {
+								"url": "http://localhost:8080/api/film/getFilmbyId",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "id",
+											"value": "6",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "按类型获取电影列表",
+							"mark": "developing",
+							"sort": 4,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/film/getFilmListbyType",
+							"request": {
+								"url": "http://localhost:8080/api/film/getFilmListbyType",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "type",
+											"value": "actor",
+											"not_null": 1,
+											"type": "Text"
+										},
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "key",
+											"value": "t",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "电影分页搜索",
+							"mark": "developing",
+							"sort": 1,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/film/list",
+							"request": {
+								"url": "http://localhost:8080/api/film/list",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n    \"pageNum\":\"1\",\n    \"pageSize\":\"2\",\n    \"keyword\":\"\",\n    \"actorKeyword\":\"\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": -1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdCIsImlkIjo0LCJleHAiOjE3MDU0MTY1ODgsImlhdCI6MTcwNDgxMTc4OCwianRpIjoiMDc2YTBmNDktMDI3OC00OGZkLWE0NDItN2Q2ZDE5ZjdlNTk1IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl19.OAh6eFcgjnjbyakTUQ3bMVzzJLWka6OqOtnVrvoOpFo",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "电影上传",
+							"mark": "developing",
+							"sort": 1,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/film/addFilm",
+							"request": {
+								"url": "http://localhost:8080/api/film/addFilm",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n\t\"name\": \"ta\",\n\t\"intro\": \"test\",\n\t\"type\": \"e\",\n\t\"actor\": \"b\",\n\t\"region\": \"a\",\n\t\"good\": 0.3,\n\t\"wheat\": 10,\n\t\"mheat\": 20,\n\t\"time\": \"2011-11-11\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"mock": {
+													"mock": "te"
+												}
+											},
+											"intro": {
+												"type": "string",
+												"mock": {
+													"mock": "test"
+												}
+											},
+											"type": {
+												"type": "string",
+												"mock": {
+													"mock": "test"
+												}
+											},
+											"actor": {
+												"type": "string",
+												"mock": {
+													"mock": "test"
+												}
+											},
+											"region": {
+												"type": "string",
+												"mock": {
+													"mock": "test"
+												}
+											},
+											"good": {
+												"type": "string",
+												"mock": {
+													"mock": "test"
+												}
+											},
+											"wheat": {
+												"type": "integer",
+												"mock": {
+													"mock": "10"
+												}
+											},
+											"mheat": {
+												"type": "integer",
+												"mock": {
+													"mock": "20"
+												}
+											},
+											"time": {
+												"type": "string",
+												"mock": {
+													"mock": "2011-11-11"
+												}
+											}
+										},
+										"APIPOST_ORDERS": [
+											"name",
+											"intro",
+											"type",
+											"actor",
+											"region",
+											"good",
+											"wheat",
+											"mheat",
+											"time"
+										],
+										"required": []
+									}
+								},
+								"header": {
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "Authorization",
+											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdCIsImlkIjo0LCJleHAiOjE3MDU0MTY1ODgsImlhdCI6MTcwNDgxMTc4OCwianRpIjoiMDc2YTBmNDktMDI3OC00OGZkLWE0NDItN2Q2ZDE5ZjdlNTk1IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl19.OAh6eFcgjnjbyakTUQ3bMVzzJLWka6OqOtnVrvoOpFo",
+											"not_null": 1,
+											"type": "Text"
+										}
+									]
 								}
 							},
 							"response": {
@@ -176,9 +886,9 @@
 				},
 				{
 					"target_type": "folder",
-					"name": "用户操作",
+					"name": "用户登录注册",
 					"mark": "developing",
-					"sort": 10,
+					"sort": 1,
 					"tags": [],
 					"request": {
 						"description": ""
@@ -186,9 +896,67 @@
 					"children": [
 						{
 							"target_type": "api",
+							"name": "密码重置",
+							"mark": "developing",
+							"sort": 2,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/reset-confirm",
+							"request": {
+								"url": "http://localhost:8080/api/auth/reset-confirm",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n\t\"email\": \"2703001087@qq.com\",\n\t\"code\": \"574687\",\n    \"password\":\"654321\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
 							"name": "发送邮箱验证码(注册)",
 							"mark": "developing",
-							"sort": 4,
+							"sort": 3,
 							"tags": [],
 							"method": "GET",
 							"mock": "{}",
@@ -200,6 +968,8 @@
 									"pre_script": "",
 									"test": ""
 								},
+								"pre_tasks": [],
+								"post_tasks": [],
 								"body": {
 									"mode": "json",
 									"parameter": [],
@@ -243,9 +1013,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								},
 								"error": {
@@ -258,9 +1026,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								}
 							},
@@ -268,7 +1034,7 @@
 						},
 						{
 							"target_type": "api",
-							"name": "密码重置",
+							"name": "密码重置请求",
 							"mark": "developing",
 							"sort": 6,
 							"tags": [],
@@ -282,368 +1048,8 @@
 									"pre_script": "",
 									"test": ""
 								},
-								"body": {
-									"mode": "json",
-									"parameter": [],
-									"raw": "{\n\t\"email\": \"2703001087@qq.com\",\n\t\"code\": \"574687\",\n    \"password\":\"654321\"\n}",
-									"raw_para": [],
-									"raw_schema": {
-										"type": "object"
-									}
-								}
-							},
-							"response": {
-								"success": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "成功",
-										"isDefault": 1,
-										"code": 200,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								},
-								"error": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "失败",
-										"isDefault": -1,
-										"code": 404,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								}
-							},
-							"children": []
-						},
-						{
-							"target_type": "api",
-							"name": "测试接口",
-							"mark": "developing",
-							"sort": 8,
-							"tags": [],
-							"method": "GET",
-							"mock": "{}",
-							"mock_url": "/api/test/hello",
-							"request": {
-								"url": "http://localhost:8080/api/test/hello",
-								"description": "",
-								"event": {
-									"pre_script": "",
-									"test": ""
-								},
-								"body": {
-									"mode": "urlencoded",
-									"parameter": [
-										{
-											"description": "",
-											"field_type": "String",
-											"is_checked": 1,
-											"key": "",
-											"value": "",
-											"not_null": 1,
-											"type": "Text",
-											"static": true
-										}
-									],
-									"raw": "",
-									"raw_para": [],
-									"raw_schema": {
-										"type": "object"
-									}
-								},
-								"header": {
-									"parameter": [
-										{
-											"description": "",
-											"field_type": "String",
-											"is_checked": 1,
-											"key": "Authorization",
-											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5bCP5Y-RIiwiaWQiOjEsImV4cCI6MTcwMzMzODI4NSwiaWF0IjoxNzAyNzMzNDg1LCJqdGkiOiI1N2U3ZDdkMy0yMGU1LTRmY2QtOTI3MC1kZjcxYzNjOWZiMjEiLCJhdXRob3JpdGllcyI6WyJST0xFX3VzZXIiXX0.-Xut2XpzpKrQH9W7cvdf1PCDB23b6XARLRjEEmNokVs",
-											"not_null": 1,
-											"type": "Text"
-										}
-									]
-								}
-							},
-							"response": {
-								"success": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "成功",
-										"isDefault": 1,
-										"code": 200,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								},
-								"error": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "失败",
-										"isDefault": -1,
-										"code": 404,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								}
-							},
-							"children": []
-						},
-						{
-							"target_type": "api",
-							"name": "升级VIP",
-							"mark": "developing",
-							"sort": 9,
-							"tags": [],
-							"method": "GET",
-							"mock": "{}",
-							"mock_url": "/api/auth/vip",
-							"request": {
-								"url": "http://localhost:8080/api/auth/vip",
-								"description": "",
-								"event": {
-									"pre_script": "",
-									"test": ""
-								},
-								"body": {
-									"mode": "json",
-									"parameter": [
-										{
-											"description": "",
-											"field_type": "String",
-											"is_checked": 1,
-											"key": "email",
-											"value": "2703001087@qq.com",
-											"not_null": 1,
-											"type": "Text"
-										}
-									],
-									"raw": "{\r\n    \"email\": \"2703001087@qq.com\"\r\n}",
-									"raw_para": [],
-									"raw_schema": {
-										"type": "object"
-									}
-								}
-							},
-							"response": {
-								"success": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "成功",
-										"isDefault": 1,
-										"code": 200,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {}
-									}
-								},
-								"error": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "失败",
-										"isDefault": -1,
-										"code": 404,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {}
-									}
-								}
-							},
-							"children": []
-						},
-						{
-							"target_type": "api",
-							"name": "发送邮箱验证码(重置)",
-							"mark": "developing",
-							"sort": 2,
-							"tags": [],
-							"method": "GET",
-							"mock": "{}",
-							"mock_url": "/api/auth/ask-code",
-							"request": {
-								"url": "http://localhost:8080/api/auth/ask-code?email=2703001087@qq.com&type=reset",
-								"description": "",
-								"event": {
-									"pre_script": "",
-									"test": ""
-								},
-								"query": {
-									"parameter": [
-										{
-											"description": "",
-											"is_checked": 1,
-											"key": "email",
-											"type": "Text",
-											"not_null": 1,
-											"field_type": "String",
-											"value": "2703001087@qq.com"
-										},
-										{
-											"description": "",
-											"is_checked": 1,
-											"key": "type",
-											"type": "Text",
-											"not_null": 1,
-											"field_type": "String",
-											"value": "reset"
-										}
-									]
-								}
-							},
-							"response": {
-								"success": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "成功",
-										"isDefault": 1,
-										"code": 200,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								},
-								"error": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "失败",
-										"isDefault": -1,
-										"code": 404,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								}
-							},
-							"children": []
-						},
-						{
-							"target_type": "api",
-							"name": "用户登录",
-							"mark": "developing",
-							"sort": 5,
-							"tags": [],
-							"method": "POST",
-							"mock": "{}",
-							"mock_url": "/api/auth/login",
-							"request": {
-								"url": "http://localhost:8080/api/auth/login",
-								"description": "",
-								"event": {
-									"pre_script": "",
-									"test": ""
-								},
-								"body": {
-									"mode": "urlencoded",
-									"parameter": [
-										{
-											"description": "",
-											"field_type": "String",
-											"is_checked": 1,
-											"key": "username",
-											"value": "test",
-											"not_null": 1,
-											"type": "Text"
-										},
-										{
-											"description": "",
-											"field_type": "String",
-											"is_checked": 1,
-											"key": "password",
-											"value": "123456",
-											"not_null": 1,
-											"type": "Text"
-										}
-									],
-									"raw": "{\n    \"username\":\"test\",\n    \"password\":\"123456\"\n}",
-									"raw_para": [],
-									"raw_schema": {
-										"type": "object"
-									}
-								}
-							},
-							"response": {
-								"success": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "成功",
-										"isDefault": 1,
-										"code": 200,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								},
-								"error": {
-									"raw": "",
-									"parameter": [],
-									"expect": {
-										"name": "失败",
-										"isDefault": -1,
-										"code": 404,
-										"contentType": "json",
-										"verifyType": "schema",
-										"mock": "",
-										"schema": {
-											"type": "object"
-										}
-									}
-								}
-							},
-							"children": []
-						},
-						{
-							"target_type": "api",
-							"name": "密码重置请求",
-							"mark": "developing",
-							"sort": 1,
-							"tags": [],
-							"method": "POST",
-							"mock": "{}",
-							"mock_url": "/api/auth/reset-confirm",
-							"request": {
-								"url": "http://localhost:8080/api/auth/reset-confirm",
-								"description": "",
-								"event": {
-									"pre_script": "",
-									"test": ""
-								},
+								"pre_tasks": [],
+								"post_tasks": [],
 								"body": {
 									"mode": "json",
 									"parameter": [],
@@ -684,9 +1090,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								},
 								"error": {
@@ -699,9 +1103,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								}
 							},
@@ -711,7 +1113,7 @@
 							"target_type": "api",
 							"name": "刷新token",
 							"mark": "developing",
-							"sort": 1,
+							"sort": 7,
 							"tags": [],
 							"method": "GET",
 							"mock": "{}",
@@ -723,6 +1125,8 @@
 									"pre_script": "",
 									"test": ""
 								},
+								"pre_tasks": [],
+								"post_tasks": [],
 								"header": {
 									"parameter": [
 										{
@@ -748,9 +1152,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								},
 								"error": {
@@ -763,9 +1165,65 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "用户注册",
+							"mark": "developing",
+							"sort": 4,
+							"tags": [],
+							"method": "POST",
+							"mock": "{}",
+							"mock_url": "/api/auth/register",
+							"request": {
+								"url": "http://localhost:8080/api/auth/register",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "json",
+									"parameter": [],
+									"raw": "{\n    \"email\":\"2703001087@qq.com\",\n    \"code\":\"653139\",\n    \"username\":\"admin\",\n    \"password\":\"123456\"\n}",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
 									}
 								}
 							},
@@ -775,7 +1233,7 @@
 							"target_type": "api",
 							"name": "退出登录",
 							"mark": "developing",
-							"sort": 7,
+							"sort": 1,
 							"tags": [],
 							"method": "GET",
 							"mock": "{}",
@@ -787,6 +1245,8 @@
 									"pre_script": "",
 									"test": ""
 								},
+								"pre_tasks": [],
+								"post_tasks": [],
 								"header": {
 									"parameter": [
 										{
@@ -812,9 +1272,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								},
 								"error": {
@@ -827,9 +1285,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								}
 							},
@@ -837,24 +1293,45 @@
 						},
 						{
 							"target_type": "api",
-							"name": "用户注册",
+							"name": "用户登录",
 							"mark": "developing",
-							"sort": 3,
+							"sort": 1,
 							"tags": [],
 							"method": "POST",
 							"mock": "{}",
-							"mock_url": "/api/auth/register",
+							"mock_url": "/api/auth/login",
 							"request": {
-								"url": "http://localhost:8080/api/auth/register",
+								"url": "http://localhost:8080/api/auth/login",
 								"description": "",
 								"event": {
 									"pre_script": "",
 									"test": ""
 								},
+								"pre_tasks": [],
+								"post_tasks": [],
 								"body": {
-									"mode": "json",
-									"parameter": [],
-									"raw": "{\n    \"email\":\"2703001087@qq.com\",\n    \"code\":\"653139\",\n    \"username\":\"admin\",\n    \"password\":\"123456\"\n}",
+									"mode": "urlencoded",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "username",
+											"value": "test",
+											"not_null": 1,
+											"type": "Text"
+										},
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "password",
+											"value": "123456",
+											"not_null": 1,
+											"type": "Text"
+										}
+									],
+									"raw": "{\n    \"username\":\"test\",\n    \"password\":\"123456\"\n}",
 									"raw_para": [],
 									"raw_schema": {
 										"type": "object"
@@ -872,9 +1349,7 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
-										}
+										"schema": {}
 									}
 								},
 								"error": {
@@ -887,9 +1362,146 @@
 										"contentType": "json",
 										"verifyType": "schema",
 										"mock": "",
-										"schema": {
-											"type": "object"
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "用户升级VIP",
+							"mark": "developing",
+							"sort": 8,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/vip",
+							"request": {
+								"url": "http://localhost:8080/api/auth/vip",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"body": {
+									"mode": "form-data",
+									"parameter": [
+										{
+											"description": "",
+											"field_type": "String",
+											"is_checked": 1,
+											"key": "email",
+											"value": "2945484861@qq.com",
+											"not_null": 1,
+											"type": "Text"
 										}
+									],
+									"raw": "",
+									"raw_para": [],
+									"raw_schema": {
+										"type": "object"
+									}
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								}
+							},
+							"children": []
+						},
+						{
+							"target_type": "api",
+							"name": "发送邮箱验证码(重置)",
+							"mark": "developing",
+							"sort": 5,
+							"tags": [],
+							"method": "GET",
+							"mock": "{}",
+							"mock_url": "/api/auth/ask-code",
+							"request": {
+								"url": "http://localhost:8080/api/auth/ask-code?email=2703001087@qq.com&type=reset",
+								"description": "",
+								"event": {
+									"pre_script": "",
+									"test": ""
+								},
+								"pre_tasks": [],
+								"post_tasks": [],
+								"query": {
+									"parameter": [
+										{
+											"description": "",
+											"is_checked": 1,
+											"key": "email",
+											"type": "Text",
+											"not_null": 1,
+											"field_type": "String",
+											"value": "2703001087@qq.com"
+										},
+										{
+											"description": "",
+											"is_checked": 1,
+											"key": "type",
+											"type": "Text",
+											"not_null": 1,
+											"field_type": "String",
+											"value": "reset"
+										}
+									]
+								}
+							},
+							"response": {
+								"success": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "成功",
+										"isDefault": 1,
+										"code": 200,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
+									}
+								},
+								"error": {
+									"raw": "",
+									"parameter": [],
+									"expect": {
+										"name": "失败",
+										"isDefault": -1,
+										"code": 404,
+										"contentType": "json",
+										"verifyType": "schema",
+										"mock": "",
+										"schema": {}
 									}
 								}
 							},

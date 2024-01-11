@@ -132,10 +132,6 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         Account account = this.findAccountByNameOrEmail(email);
         if(account.getPoints()<1000) return "您的积分不足以升级";
         this.update().eq("email",email).set("role","VIP").set("points",account.getPoints()-1000).update();
-//        Integer points = accountMapper.selectOne(queryWrapper).getPoints();
-//        if(points<1000) return "您的积分不足以升级";
-//        this.update().eq("email",email).set("role","vip").set("points",points-1000).update();
-
         return null;
     }
 

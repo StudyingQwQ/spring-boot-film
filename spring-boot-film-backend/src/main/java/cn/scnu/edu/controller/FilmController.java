@@ -80,7 +80,11 @@ public class FilmController {
     public RestBean<?> sortFilmList(@RequestParam String type){
         return RestBean.success(filmService.sortFilmList(type));
     }
-
+    /**
+     * 电影详情
+     * @param id 电影唯一标识id
+     * @return 电影所有信息
+     */
     @PostMapping("/getFilmbyId")
     public RestBean<?> getFilmbyId(@RequestParam Integer id){
         if (filmService.getFilmbyId(id) == null) {
