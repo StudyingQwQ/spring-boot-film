@@ -6,6 +6,7 @@ import cn.scnu.edu.entity.dto.Film;
 import cn.scnu.edu.service.AccountService;
 import cn.scnu.edu.service.FilmService;
 import com.alibaba.excel.EasyExcel;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/export")
+@Tag(name = "报表生成", description = "导出用户和电影报表。")
 public class ExcelController {
     @Resource
     private FilmService filmService;
     @Resource
     private AccountService accountService;
+    /**
+     * 获取电影报表
+     * @param response 响应
+     * @return 得到电影报表
+     */
     @GetMapping("/film")
     public RestBean<Void> filmExport(HttpServletResponse response) throws IOException {
         List<Film> list = filmService.getFilm();
@@ -33,11 +40,16 @@ public class ExcelController {
         // 这里需要设置不关闭流
         EasyExcel.write(response.getOutputStream(), Film.class)
                 .autoCloseStream(Boolean.FALSE)
-                .sheet("模板")
+                .sheet("sheet1")
                 .doWrite(list);
         return RestBean.success();
     }
 
+    /**
+     * 获取用户报表
+     * @param response 响应
+     * @return 得到用户报表
+     */
     @GetMapping("/account")
     public RestBean<Void> accountExport(HttpServletResponse response) throws IOException {
         List<Account> list = accountService.getAccounts();
@@ -48,7 +60,7 @@ public class ExcelController {
         // 这里需要设置不关闭流
         EasyExcel.write(response.getOutputStream(), Account.class)
                 .autoCloseStream(Boolean.FALSE)
-                .sheet("模板")
+                .sheet("sheet1")
                 .doWrite(list);
         return RestBean.success();
     }
