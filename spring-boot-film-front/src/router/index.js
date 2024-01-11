@@ -23,11 +23,29 @@ const router = createRouter({
                     component: () => import("@/views/welcome/ForgetPage.vue")
                 }
             ]
-        },
-        {
+        }, {
             path: '/index',
             name: 'index',
             component: () => import("@/views/indexView.vue"),
+        }, {
+            path: '/main',
+            name: 'film',
+            component: () => import("@/views/MainBackground.vue"),
+            children: [
+                            {
+                                path: "/list",
+                                name: "list",
+                                component: () => import("@/views/main/MainList.vue"),
+                            },{
+                                path: 'detail',
+                                name: 'film-detail',
+                                component: () => import("@/views/main/FilmDetail.vue")
+                            }
+                        ]
+        }, {
+            path: '/user',
+            name: 'user-info',
+            component: () => import("@/views/user/User.vue"),
         },
         {
             path: '/detail',
