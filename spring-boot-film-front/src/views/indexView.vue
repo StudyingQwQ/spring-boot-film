@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button @click="userLogout">退出登录</el-button>
-    <el-button @click="router.push('/detail')">跳转测试</el-button>
+    <el-button @click="router.push('/main')">跳转测试</el-button>
   </div>
 </template>
 
