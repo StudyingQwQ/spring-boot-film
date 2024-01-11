@@ -28,10 +28,25 @@ const router = createRouter({
             name: 'index',
             component: () => import("@/views/indexView.vue"),
         }, {
-                     path: '/detail',
-                     name: 'film-detail',
-                     component: () => import("@/views/index/Background.vue"),
-                 }
+            path: '/main',
+            name: 'film',
+            component: () => import("@/views/MainBackground.vue"),
+            children: [
+                            {
+                                path: "/list",
+                                name: "list",
+                                component: () => import("@/views/main/MainList.vue"),
+                            },{
+                                path: 'detail',
+                                name: 'film-detail',
+                                component: () => import("@/views/main/FilmDetail.vue")
+                            }
+                        ]
+        }, {
+            path: '/user',
+            name: 'user-info',
+            component: () => import("@/views/user/User.vue"),
+                          }
     ],
 })
 //路由前置守卫
