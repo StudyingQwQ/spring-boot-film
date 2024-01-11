@@ -31,6 +31,25 @@ const router = createRouter({
             path: '/admin',
             name: 'admin',
             component: () => import("@/views/admin/AdminIndex.vue"),
+            children: [
+                {
+                    path: 'users',
+                    name: 'admin-users',
+                    component: () => import("@/views/admin/views/UserManagement.vue"),
+                }, {
+                    path: 'exports',
+                    name: 'admin-exports',
+                    component: () => import("@/views/admin/views/ExportManagement.vue"),
+                }, {
+                    path: 'filmlist',
+                    name: 'admin-filmlist',
+                    component: () => import("@/views/admin/views/FilmList.vue"),
+                }, {
+                    path: 'uploadfilm',
+                    name: 'admin-uploadfilm',
+                    component: () => import("@/views/admin/views/UploadFilm.vue"),
+                }
+            ]
         }, {
             path: '/main',
             name: 'film',
