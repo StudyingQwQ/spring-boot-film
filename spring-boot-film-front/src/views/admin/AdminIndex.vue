@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <el-button @click="userLogout">退出登录</el-button>
-    <el-button @click="router.push('/main')">跳转测试</el-button>
-  </div>
+  <el-button type="success" @click="userLogout">退出登录</el-button>
 </template>
 
 <script setup>
