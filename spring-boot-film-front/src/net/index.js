@@ -77,6 +77,7 @@ function login(username, password, remember, success, failure = defaultFailure){
         localStorage.setItem('role', data.role)
         localStorage.setItem('points', data.points)
         localStorage.setItem('email', data.email)
+        localStorage.setItem('token', data.token)
         ElMessage.success(`登录成功，欢迎 ${data.role}用户${data.username} 来到我们的系统`)
         success(data)
     }, failure)
