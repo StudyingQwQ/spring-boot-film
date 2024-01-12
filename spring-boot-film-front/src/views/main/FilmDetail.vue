@@ -50,8 +50,12 @@ export default {
       items: ''
     };
   },
-
-  async mounted() {
+watch: {
+  $route (to, from) {
+    this.$router.go(0);
+  },
+},
+  async created() {
             this.id=this.$route.query.id;
 
         console.log(this.id);

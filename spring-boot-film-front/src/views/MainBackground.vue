@@ -4,14 +4,14 @@
   <el-container>
     <el-header height="60px" weight="1200px">
      <el-row height="60px" weight="1200px">
-     <el-col :span="1">
-     <div><img src="/favicon.ico"></div>
+     <el-col :span="3">
+     <div><img src="/logo.jpg" height="60px"></div>
      </el-col>
        <el-col :span="3">
 
 
       <div class="demo-basic--circle">
-      <router-link to="/user">
+      <router-link to="/main/user">
 
 
         <div class="block"><el-avatar :size="50" :src="circleUrl"></el-avatar></div>
@@ -26,6 +26,9 @@
 <el-col :span="4">
 <el-button type="primary" @click="SearchById('actor',searchKey)">搜索</el-button>
 </el-col>
+ <el-col :span="3">
+     <div><img src="/sign.jpg" height="60px"></div>
+     </el-col>
      </el-row>
     </el-header>
 
@@ -37,7 +40,7 @@
 
       >
 
-          <el-menu-item index="1" >热播</el-menu-item>
+          <el-menu-item index="1" @click="goToMain()">热播</el-menu-item>
           <el-menu-item index="4" @click="SortByType('good')">评分</el-menu-item>
 
           <el-menu-item index="2">类型</el-menu-item>
@@ -204,6 +207,10 @@ import {ElMessage} from "element-plus";
                          query: {
                          type:type
                               }});
+                },
+
+                goToMain(){
+                    this.$router.push({path: '/main'});
                 }
         }
       }

@@ -75,13 +75,13 @@ const router = createRouter({
                                 path: 'sort',
                                 name: 'film-sort',
                                 component: () => import("@/views/main/SortList.vue")
-                            }
+                            }, {
+                                path: 'user',
+                                name: 'user-info',
+                                component: () => import("@/views/main/User.vue"),
+                            },
                         ]
-        }, {
-            path: '/user',
-            name: 'user-info',
-            component: () => import("@/views/user/User.vue"),
-        },
+        }
     ],
 })
 
