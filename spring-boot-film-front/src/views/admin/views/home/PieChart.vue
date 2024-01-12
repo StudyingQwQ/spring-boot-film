@@ -73,5 +73,6 @@ function drawPieChart(data) {
 <style scoped>
 .chart {
   height: 100vh;
+  margin-top: 120px;
 }
 </style>
