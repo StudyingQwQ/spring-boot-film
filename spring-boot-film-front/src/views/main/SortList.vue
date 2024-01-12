@@ -85,26 +85,52 @@ margin-top:-880px;
 margin-left:500xp;
 }
 </style>
-<script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-import { useRouter, useRoute } from 'vue-router'
 
-const router = useRouter()
-const route = useRoute()
+<script>
+import axios from 'axios';
 
-// data
-const items = ref({})
+export default {
+  data() {
+    return {
 
-// created
-const response = await axios.get('http://localhost:8080/api/film/getFilm')
-items.value = response.data.data
-console.log(items.value)
+    type:'',
+      items: []
+    };
+  },
+watch: {
+  $route (to, from) {
+    this.$router.go(0);
+  },
+},
+  async mounted() {
 
-// methods
-function goToDetail(id) {
-  // 使用你的路由库跳转到详情页面，例如：
-  router.push({path: '/main/detail', query: {id:id}})
-  console.log(`Go to details of ${id}`)
-}
+        this.type=this.$route.query.type
+        console.log(this.type);
+                    try {
+                            const response = await axios.post('http://localhost:8080/api/film/sortFilmList'
+                             , {
+                                headers: {
+                                Authorization: 'Bearer ' + this.token// 这里的token是你的Bearer token
+                                        }
+                             }
+                            ,{
+                                params:{
+                                type:this.type,
+
+                                }
+                            });
+                           this.items = response.data.data;
+                          } catch (error) {
+                            console.error(error);
+                          }
+  },
+methods: {
+    goToDetail(id) {
+      // 使用你的路由库跳转到详情页面，例如：
+      this.$router.push({ path: 'detail', query: { id:id } });
+      console.log(`Go to details of ${id}`);
+    }
+  }
+};
+
 </script>

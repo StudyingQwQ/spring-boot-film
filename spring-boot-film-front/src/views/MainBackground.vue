@@ -11,7 +11,7 @@
 
 
       <div class="demo-basic--circle">
-      <router-link to="/">
+      <router-link to="/user">
 
 
         <div class="block"><el-avatar :size="50" :src="circleUrl"></el-avatar></div>
@@ -200,7 +200,7 @@ import {ElMessage} from "element-plus";
                 },
 
                 async SortByType(type){
-                        this.$router.push({path: '/main',
+                        this.$router.push({path: '/main/sort',
                          query: {
                          type:type
                               }});

@@ -10,12 +10,12 @@
 
          <div  class="title" style="display: block;">{{item.name}}</div>
         <div  class="actor" style="display: block;">{{item.type+' '+item.actor+' '+item.region}}</div>
-         <div  class="type" style="display: block;">{{item.good}}</div>
+         <div  class="type" style="display: block;">评分：{{item.good}}</div>
          <div  class="intro" style="display: block;">{{item.intro}}</div>
 
        </div>
 
-       <el-button class="bt" type="success">查看详情</el-button>
+       <el-button class="bt" type="success" @click="goToDetail(item.id)">查看详情</el-button>
 
 
 
@@ -128,7 +128,7 @@ watch: {
 methods: {
     goToDetail(id) {
       // 使用你的路由库跳转到详情页面，例如：
-      router.push({ path: 'detail', params: { id } });
+      this.$router.push({ path: 'detail', query: { id:id } });
       console.log(`Go to details of ${id}`);
     }
   }
