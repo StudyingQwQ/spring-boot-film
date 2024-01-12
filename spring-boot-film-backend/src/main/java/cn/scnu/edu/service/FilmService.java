@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 public interface FilmService extends IService<Film> {
     boolean addFilm(FilmAddVO vo) throws ParseException;
@@ -23,4 +24,8 @@ public interface FilmService extends IService<Film> {
     List<Film> sortFilmList(String type);
 
     Film getFilmbyId(Integer id);
+
+    Map<String, Integer> getRegion();
+
+    Map<String, Integer> getType();
 }

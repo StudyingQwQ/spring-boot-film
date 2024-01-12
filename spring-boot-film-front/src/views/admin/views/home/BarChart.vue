@@ -7,44 +7,64 @@ import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { BarChart } from 'echarts/charts';
 import {
-  GridComponent,
   TitleComponent,
   TooltipComponent,
+  LegendComponent,
+  GridComponent,
 } from 'echarts/components';
 import VChart from 'vue-echarts';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
 use([
   CanvasRenderer,
   BarChart,
   TitleComponent,
   TooltipComponent,
-  GridComponent
+  LegendComponent,
+  GridComponent,
 ]);
 
-const option = ref({
-  title: {
-    text: '电影类型占比',
-    left: 'center',
-  },
-  tooltip: {
-    trigger: 'item',
-    formatter: '{a} <br/>{b} : {c} ({d}%)',
-  },
-  xAxis: {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [120, 200, 150, 80, 70, 110, 130],
-      type: 'bar'
-    }
-  ]
+const option = ref(null);
+
+onMounted(async () => {
+  const data = await getData();
+  drawBarChart(data);
 });
+
+async function getData() {
+  const response = await axios.get('http://localhost:8080/api/film/getRegion');
+  return response.data.data;
+}
+
+function drawBarChart(data) {
+  option.value = {
+    title: {
+      text: '电影地区分布',
+      left: 'center',
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    xAxis: {
+      type: 'category',
+      data: Object.keys(data)
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: '电影数量',
+        type: 'bar',
+        data: Object.values(data)
+      }
+    ]
+  };
+}
 </script>
 
 <style scoped>

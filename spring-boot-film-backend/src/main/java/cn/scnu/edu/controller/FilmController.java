@@ -92,4 +92,21 @@ public class FilmController {
         }
         return RestBean.success(filmService.getFilmbyId(id));
     }
+    /**
+     * 电影地区及其数量
+     * @return 电影地区及其数量
+     */
+    @GetMapping("/getRegion")
+    public RestBean<?> getRegion(){
+        return RestBean.success(filmService.getRegion());
+    }
+
+    /**
+     * 电影类型及其数量
+     * @return 电影类型及其数量
+     */
+    @GetMapping("/getType")
+    public RestBean<?> getType(){
+        return RestBean.success(filmService.getType());
+    }
 }

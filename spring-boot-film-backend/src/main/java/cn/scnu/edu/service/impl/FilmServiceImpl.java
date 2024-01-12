@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 电影信息处理相关服务
@@ -90,6 +88,26 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements Fi
     @Override
     public Film getFilmbyId(Integer id) {
         return this.baseMapper.selectById(id);
+    }
+
+    @Override
+    public Map<String, Integer> getRegion() {
+        List<String> list = this.baseMapper.selectList(null).stream().map(Film::getRegion).distinct().toList();
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : list) {
+            map.put(s, this.baseMapper.selectList(Wrappers.<Film>query().eq("region", s)).size());
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String, Integer> getType() {
+        List<String> list = this.baseMapper.selectList(null).stream().map(Film::getType).distinct().toList();
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : list) {
+            map.put(s, this.baseMapper.selectList(Wrappers.<Film>query().eq("type", s)).size());
+        }
+        return map;
     }
 
     private boolean existsFilmByName(String name){

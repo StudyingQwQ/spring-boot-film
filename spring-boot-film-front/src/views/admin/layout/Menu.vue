@@ -60,30 +60,30 @@ const menulist: MenuItem[] = [
     index: "/admin/home",
     icon: House,
   },
-  {
-    id: 2,
-    name: "用户管理",
-    index: "/admin/users",
-    icon: User,
-  },
-  {
-    id: 101,
-    name: "电影管理",
-    index: "/prouduct-management",
-    icon: Goods,
-    children: [
-      {
-        id: 102,
-        name: "电影列表",
-        index: "/admin/filmlist",
-      },
-      {
-        id: 103,
-        name: "电影上传",
-        index: "/admin/uploadfilm",
-      },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   name: "用户管理",
+  //   index: "/admin/users",
+  //   icon: User,
+  // },
+  // {
+  //   id: 101,
+  //   name: "电影管理",
+  //   index: "/prouduct-management",
+  //   icon: Goods,
+  //   children: [
+  //     {
+  //       id: 102,
+  //       name: "电影列表",
+  //       index: "/admin/filmlist",
+  //     },
+  //     {
+  //       id: 103,
+  //       name: "电影上传",
+  //       index: "/admin/uploadfilm",
+  //     },
+  //   ],
+  // },
 
 ];
 </script>
