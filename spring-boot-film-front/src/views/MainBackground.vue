@@ -48,9 +48,12 @@
             <el-menu-item class="chooseitem" index="2-2" @click="SearchById('type','动作')">动作</el-menu-item>
             <el-menu-item class="chooseitem" index="2-3" @click="SearchById('type','冒险')">冒险</el-menu-item>
             <el-menu-item class="chooseitem" index="2-4" @click="SearchById('type','剧情')">剧情</el-menu-item>
+            <el-menu-item class="chooseitem" index="2-5" @click="SearchById('type','科幻')">科幻</el-menu-item>
+            <el-menu-item class="chooseitem" index="2-6" @click="SearchById('type','超英')">超英</el-menu-item>
           <el-menu-item index="3">地区</el-menu-item>
           <el-menu-item class="chooseitem" index="3-1" @click="SearchById('region','美国')">美国</el-menu-item>
           <el-menu-item class="chooseitem" index="3-2" @click="SearchById('region','日本')">日本</el-menu-item>
+          <el-menu-item class="chooseitem" index="3-2" @click="SearchById('region','德国')">德国</el-menu-item>
 
         <!-- 更多菜单项... -->
       </el-menu>
