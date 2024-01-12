@@ -1,7 +1,7 @@
 <template>
 <div class="film-title">{{items.name}}</div>
 <div class="film-container">
-    <video  class="film-play" :src="items.filmurl" controls></video>
+    <video v-if="showFilm" class="film-play" :src="items.filmurl" controls></video>
   </div>
   <div class="film-info">{{items.type+' '+items.time+' '+items.region}}</div>
   <div class="film-info">{{items.actor+' '+items.good}}</div>
@@ -76,6 +76,12 @@ watch: {
                             console.error(error);
                           }
                           console.log(this.items)
+  },
+  computed: {
+    showFilm() {
+      const role = localStorage.getItem('role');
+      return role !== 'USER';
+    }
   },
 methods: {
     goToDetail(id) {
