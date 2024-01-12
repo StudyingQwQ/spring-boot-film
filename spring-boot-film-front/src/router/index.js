@@ -67,6 +67,14 @@ const router = createRouter({
                                 path: 'detail',
                                 name: 'film-detail',
                                 component: () => import("@/views/main/FilmDetail.vue")
+                            },{
+                                path: 'search',
+                                name: 'film-search',
+                                component: () => import("@/views/main/SearchList.vue")
+                            },{
+                                path: 'sort',
+                                name: 'film-sort',
+                                component: () => import("@/views/main/SortList.vue")
                             }
                         ]
         }, {

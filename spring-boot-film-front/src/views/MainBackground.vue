@@ -1,4 +1,5 @@
 <template>
+<Suspense>
 <div>
   <el-container>
     <el-header height="60px" weight="1200px">
@@ -10,7 +11,7 @@
 
 
       <div class="demo-basic--circle">
-      <router-link to="/">
+      <router-link to="/user">
 
 
         <div class="block"><el-avatar :size="50" :src="circleUrl"></el-avatar></div>
@@ -20,10 +21,10 @@
 
        </div></el-col>
        <el-col :span="10">
-            <el-input v-model="searchId" placeholder="请输入电影id"></el-input>
+            <el-input v-model="searchKey" placeholder="请输入主演"></el-input>
        </el-col>
 <el-col :span="4">
-<el-button type="primary" @click="SearchById(searchId)">搜索</el-button>
+<el-button type="primary" @click="SearchById('actor',searchKey)">搜索</el-button>
 </el-col>
      </el-row>
     </el-header>
@@ -36,14 +37,17 @@
 
       >
 
-          <template slot="title"><i class="el-icon-location"></i>导航一</template>
-          <el-menu-item index="1-1">热播</el-menu-item>
-          <el-menu-item index="1-2">类型</el-menu-item>
+          <el-menu-item index="1" >热播</el-menu-item>
+          <el-menu-item index="4" @click="SortByType('good')">评分</el-menu-item>
 
-
-          <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-          <el-menu-item index="2-1">地区</el-menu-item>
-          <el-menu-item index="2-2">评分</el-menu-item>
+          <el-menu-item index="2">类型</el-menu-item>
+            <el-menu-item class="chooseitem" index="2-1" @click="SearchById('type','历史')">历史</el-menu-item>
+            <el-menu-item class="chooseitem" index="2-2" @click="SearchById('type','动作')">动作</el-menu-item>
+            <el-menu-item class="chooseitem" index="2-3" @click="SearchById('type','冒险')">冒险</el-menu-item>
+            <el-menu-item class="chooseitem" index="2-4" @click="SearchById('type','剧情')">剧情</el-menu-item>
+          <el-menu-item index="3">地区</el-menu-item>
+          <el-menu-item class="chooseitem" index="3-1" @click="SearchById('region','美国')">美国</el-menu-item>
+          <el-menu-item class="chooseitem" index="3-2" @click="SearchById('region','日本')">日本</el-menu-item>
 
         <!-- 更多菜单项... -->
       </el-menu>
@@ -58,6 +62,7 @@
     </el-container>
   </el-container>
 </div>
+</Suspense>
 </template>
 
 <style>
@@ -123,9 +128,18 @@
   }
 
   .el-menu-item{
+  border: 1px solid #333;
+ font-size: 20px; /* 根据需要调整字体大小 */
+     font-weight: bold; /* 字体加粗 */
+
   background-color: #D3DCE6;
       color: #333;
       text-align: center;
+  }
+
+  .chooseitem{
+  font-size: 15px; /* 根据需要调整字体大小 */
+
   }
 </style>
 
@@ -141,19 +155,22 @@ import {ElMessage} from "element-plus";
         circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
         sizeList: ["large"],
-        searchId:'',
+        searchKey:'',
         token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoicXdlciIsImlkIjo0LCJleHAiOjE3MDU1ODAxNzcsImlhdCI6MTcwNDk3NTM3NywianRpIjoiN2E4ZjdlYWItMDVmZi00ZmNkLTg0ZDUtMDk0M2Y2ZDU3NjRjIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl19.jmwNCltUVSXSNR6vC1kWEvUvhwTfU-ZJMEyifmWtTqM',
+        type:'',
       }
     },
     methods: {
 
-        async SearchById() {
+        async SearchById(type,key) {
+        console.log(type+' '+key);
+        if(this.searchKey==''&&type=='actor'){this.$router.push({path: '/main'});};
         if(this.token==''){
         this.$router.push('/');
         }
-        console.log(this.token);
+
             try {
-                    const response = await axios.post('http://localhost:8080/api/film/getFilmbyId'
+                    const response = await axios.post('http://localhost:8080/api/film/getFilmListbyType'
                      , {
                         headers: {
                         Authorization: 'Bearer ' + this.token// 这里的token是你的Bearer token
@@ -161,18 +178,32 @@ import {ElMessage} from "element-plus";
                      }
                     ,{
                         params:{
-                            id:this.searchId
+                        type:type,
+                        key:key
                         }
                     });
                     console.log(response.data);
-                    if (response.data.success) {
-                      this.$router.push('/targetPage');
+                    if (response.data.data!='') {
+                    console.log('jump');
+                      this.$router.push({path: '/main/search',
+                         query: {key:key,
+                         type:type
+                              }});
+
+
                     } else {
                       // 处理错误
                     }
                   } catch (error) {
                     console.error(error);
                   }
+                },
+
+                async SortByType(type){
+                        this.$router.push({path: '/main/sort',
+                         query: {
+                         type:type
+                              }});
                 }
         }
       }
