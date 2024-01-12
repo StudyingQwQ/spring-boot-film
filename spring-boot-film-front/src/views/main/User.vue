@@ -34,12 +34,24 @@ margin-top:10px;
 
 <script setup>
 import router from "@/router";
+import axios from 'axios'
 const username = localStorage.getItem('username')
 const email = localStorage.getItem('email')
 const userRole = localStorage.getItem('role')
 const points = localStorage.getItem('points')
 
-function applyForVip(){
-
+async function applyForVip(){
+if(points<1000){
+    window.alert("积分不足，努力赚取积分吧！");
+    return;
 }
+
+  try {
+    const response = await axios.get(`http://localhost:8080/api/auth/vip?email=${email}`);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 </script>
