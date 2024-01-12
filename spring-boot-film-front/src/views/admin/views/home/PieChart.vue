@@ -12,7 +12,8 @@ import {
   LegendComponent,
 } from 'echarts/components';
 import VChart from 'vue-echarts';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
 use([
   CanvasRenderer,
@@ -22,43 +23,51 @@ use([
   LegendComponent,
 ]);
 
-const option = ref({
-  title: {
-    text: '电影类型占比',
-    left: 'center',
-  },
-  tooltip: {
-    trigger: 'item',
-    formatter: '{a} <br/>{b} : {c} ({d}%)',
-  },
-  legend: {
-    orient: 'vertical',
-    left: 'left',
-    data: ['Direct', 'Email', 'Ad Networks', 'Video Ads', 'Search Engines'],
-  },
-  series: [
-    {
-      name: 'Traffic Sources',
-      type: 'pie',
-      radius: '55%',
-      center: ['50%', '60%'],
-      data: [
-        { value: 335, name: 'Direct' },
-        { value: 310, name: 'Email' },
-        { value: 234, name: 'Ad Networks' },
-        { value: 135, name: 'Video Ads' },
-        { value: 1548, name: 'Search Engines' },
-      ],
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
+const option = ref(null);
+
+onMounted(async () => {
+  const data = await getData();
+  drawPieChart(data);
+});
+
+async function getData() {
+  const response = await axios.get('http://localhost:8080/api/film/getType');
+  return response.data.data;
+}
+
+function drawPieChart(data) {
+  option.value = {
+    title: {
+      text: '电影类型占比',
+      left: 'center',
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b} : {c} ({d}%)',
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      data: Object.keys(data),
+    },
+    series: [
+      {
+        name: '电影类型',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '60%'],
+        data: Object.entries(data).map(([name, value]) => ({ name, value })),
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
         },
       },
-    },
-  ],
-});
+    ],
+  };
+}
 </script>
 
 <style scoped>

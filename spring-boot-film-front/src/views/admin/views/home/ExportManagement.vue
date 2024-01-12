@@ -8,11 +8,10 @@
       width="30%"
       center
   >
-    <span>电影报表:http://localhost:8080/api/export/films</span><br>
-    <span>用户报表:http://localhost:8080/api/export/account</span>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false" type="primary">确认</el-button>
+        <el-button @click="openExportAccount" type="primary" round>用户报表生成</el-button>
+        <el-button @click="openExportFilm" type="primary" round>电影报表生成</el-button>
       </span>
     </template>
   </el-dialog>
@@ -20,8 +19,21 @@
 
 <script setup>
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 
 const dialogVisible = ref(false)
+
+const openExportFilm = () => {
+  const url = 'http://localhost:8080/api/export/film'
+  window.open(url, '_blank')
+  ElMessage.success("电影报表生成成功")
+}
+
+const openExportAccount = () => {
+  const url = 'http://localhost:8080/api/export/account'
+  window.open(url, '_blank')
+  ElMessage.success("用户报表生成成功")
+}
 
 </script>
 <style scoped>

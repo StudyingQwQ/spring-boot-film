@@ -36,23 +36,24 @@ const router = createRouter({
                     path: 'home',
                     name: 'admin-home',
                     component: () => import("@/views/admin/views/AdminHome.vue"),
-                }, {
-                    path: 'users',
-                    name: 'admin-users',
-                    component: () => import("@/views/admin/views/UserManagement.vue"),
-                }, {
-                    path: 'exports',
-                    name: 'admin-exports',
-                    component: () => import("@/views/admin/views/home/ExportManagement.vue"),
-                }, {
-                    path: 'filmlist',
-                    name: 'admin-filmlist',
-                    component: () => import("@/views/admin/views/FilmList.vue"),
-                }, {
-                    path: 'uploadfilm',
-                    name: 'admin-uploadfilm',
-                    component: () => import("@/views/admin/views/UploadFilm.vue"),
                 }
+                // , {
+                //     path: 'users',
+                //     name: 'admin-users',
+                //     component: () => import("@/views/admin/views/UserManagement.vue"),
+                // }, {
+                //     path: 'exports',
+                //     name: 'admin-exports',
+                //     component: () => import("@/views/admin/views/home/ExportManagement.vue"),
+                // }, {
+                //     path: 'filmlist',
+                //     name: 'admin-filmlist',
+                //     component: () => import("@/views/admin/views/FilmList.vue"),
+                // }, {
+                //     path: 'uploadfilm',
+                //     name: 'admin-uploadfilm',
+                //     component: () => import("@/views/admin/views/UploadFilm.vue"),
+                // }
             ]
         }, {
             path: '/main',
