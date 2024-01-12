@@ -3,6 +3,7 @@
     <div class="userinfo">
       <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
       <span class="username">{{ username }}</span>
+      <div class="export"><Export /></div>
     </div>
     <div class="overview-list">
       <div
@@ -29,6 +30,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import Export from  "./ExportManagement.vue";
 
 const username = localStorage.getItem('username')
 const email = localStorage.getItem('email')
@@ -100,6 +102,9 @@ const overviewData = ref<OverviewData>({
 }
 #overview .userinfo .username {
   margin-left: 10px;
+}
+#overview .userinfo .export {
+  margin-left: 50vh;
 }
 #overview .overview-list {
   margin-top: 40px;

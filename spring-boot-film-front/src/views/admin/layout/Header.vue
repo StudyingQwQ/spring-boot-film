@@ -25,7 +25,7 @@
                 <div style="font-size: 14px; color: grey">邮箱:{{ email }}</div>
                 <div style="font-size: 14px; color: grey">用户权限:{{ userRole }}</div>
                 <div style="font-size: 14px; color: grey">积分:{{ points }}</div>
-                <el-button type="primary" @click="userLogout">退出登录</el-button>
+                <el-button type="danger" @click="userLogout">退出登录</el-button>
               </div>
             </div>
           </template>
