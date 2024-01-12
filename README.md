@@ -3,9 +3,9 @@
 - top 上方导航栏 ✔
 -   index 首页  ✔
 -   search 搜索页(以及浏览页在一起) ✔
--   filmDetail 详情页 
--   trending 热门电影页 照搬首页 顶部加轮播图
+-   filmDetail 详情页 ✔
+-   trending 热门电影页 ✔
 -   login 登录 ✔
 -   register 注册 ✔
--   play 播放页 
+-   play 播放页 ✔
 - bottom 下方信息栏以及导航栏 ✔
