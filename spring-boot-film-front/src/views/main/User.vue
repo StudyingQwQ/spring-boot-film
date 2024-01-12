@@ -4,6 +4,7 @@
   <div class="user-info" style="font-size: 14px; color: grey">邮箱:{{ email }}</div>
   <div class="user-info" style="font-size: 14px; color: grey">用户权限:{{ userRole }}</div>
   <div class="user-info" style="font-size: 14px; color: grey">积分:{{ points }}</div>
+  <div class="user-info"><el-button @click="applyForVip()">申请VIP</el-button></div>
   <div class="user-info"><el-button @click="router.replace('/main')">返回主页面</el-button></div>
 </template>
 
@@ -37,4 +38,8 @@ const username = localStorage.getItem('username')
 const email = localStorage.getItem('email')
 const userRole = localStorage.getItem('role')
 const points = localStorage.getItem('points')
+
+function applyForVip(){
+
+}
 </script>
