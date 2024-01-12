@@ -20,6 +20,21 @@ import java.util.Date;
 @TableName("db_film")
 @AllArgsConstructor
 public class Film implements BaseData {
+//    @TableId(type = IdType.AUTO)
+//    Integer id;
+//    String name;
+//    String intro;
+//    String type;
+//    String actor;
+//    String region;
+//    double good;
+//    Integer wheat;
+//    Integer mheat;
+//    @JsonFormat(pattern = "yyyy")
+//    Date time;
+//    String picurl;
+//    String filmurl;
+
     @ExcelProperty("电影编号")
     @ColumnWidth(5)
     @TableId(type = IdType.AUTO)
@@ -48,10 +63,10 @@ public class Film implements BaseData {
     @ExcelProperty("电影月热度")
     @ColumnWidth(10)
     Integer mheat;
-    @DateTimeFormat("yyyy年MM月dd日")
+    @DateTimeFormat("yyyy年")
     @ExcelProperty("电影上映时间")
     @ColumnWidth(20)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy")
     Date time;
     @ExcelProperty("电影封面")
     @ColumnWidth(50)

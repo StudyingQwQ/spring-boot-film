@@ -1,5 +1,5 @@
 <template>
-  <div>报表生成</div>
+  <div>barchart</div>
 </template>
 
 <script setup>

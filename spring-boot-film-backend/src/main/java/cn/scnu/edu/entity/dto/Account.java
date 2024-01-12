@@ -26,7 +26,9 @@ public class Account implements BaseData {
 //    String email;
 //    String role;
 //    Integer points;
+//    @JsonFormat(pattern = "yyyy")
 //    Date registerTime;
+
     @ExcelProperty("用户编号")
     @ColumnWidth(5)
     @TableId(type = IdType.AUTO)
@@ -46,9 +48,9 @@ public class Account implements BaseData {
     @ExcelProperty("积分")
     @ColumnWidth(10)
     Integer points;
-    @DateTimeFormat("yyyy年MM月dd日")
+    @DateTimeFormat("yyyy年")
     @ExcelProperty("注册时间")
     @ColumnWidth(20)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy")
     Date registerTime;
 }

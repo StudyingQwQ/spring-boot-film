@@ -57,19 +57,13 @@ const menulist: MenuItem[] = [
   {
     id: 1,
     name: "首页",
-    index: "/admin",
+    index: "/admin/home",
     icon: House,
   },
   {
     id: 2,
     name: "用户管理",
     index: "/admin/users",
-    icon: User,
-  },
-  {
-    id: 3,
-    name: "报表生成",
-    index: "/admin/exports",
     icon: User,
   },
   {

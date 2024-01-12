@@ -33,13 +33,17 @@ const router = createRouter({
             component: () => import("@/views/admin/AdminIndex.vue"),
             children: [
                 {
+                    path: 'home',
+                    name: 'admin-home',
+                    component: () => import("@/views/admin/views/AdminHome.vue"),
+                }, {
                     path: 'users',
                     name: 'admin-users',
                     component: () => import("@/views/admin/views/UserManagement.vue"),
                 }, {
                     path: 'exports',
                     name: 'admin-exports',
-                    component: () => import("@/views/admin/views/ExportManagement.vue"),
+                    component: () => import("@/views/admin/views/home/ExportManagement.vue"),
                 }, {
                     path: 'filmlist',
                     name: 'admin-filmlist',

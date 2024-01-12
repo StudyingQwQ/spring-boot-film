@@ -54,7 +54,7 @@ public class  SecurityConfiguration {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/api/film/**").permitAll()
                         .requestMatchers("/api/minio/**").hasRole("ADMIN")//限制管理员权限
-                        .requestMatchers("/api/export/**").hasRole("ADMIN")
+                        .requestMatchers("/api/export/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(conf->conf
