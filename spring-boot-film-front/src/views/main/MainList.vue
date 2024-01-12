@@ -99,6 +99,7 @@ const items = ref({})
 // created
 const response = await axios.get('http://localhost:8080/api/film/getFilm')
 items.value = response.data.data
+
 console.log(items.value)
 
 // methods

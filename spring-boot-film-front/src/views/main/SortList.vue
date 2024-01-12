@@ -101,8 +101,10 @@ watch: {
   $route (to, from) {
     this.$router.go(0);
   },
+
+
 },
-  async mounted() {
+  async created() {
 
         this.type=this.$route.query.type
         console.log(this.type);

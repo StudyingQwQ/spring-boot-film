@@ -102,6 +102,7 @@ watch: {
   $route (to, from) {
     this.$router.go(0);
   },
+
 },
   async mounted() {
         this.key=this.$route.query.key;
