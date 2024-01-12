@@ -5,7 +5,11 @@
     <el-header height="60px" weight="1200px">
      <el-row height="60px" weight="1200px">
      <el-col :span="3">
-     <div><img src="/logo.jpg" height="60px"></div>
+
+     <div>
+<img slot="reference" src="/logo.jpg" height="60px">
+
+     </div>
      </el-col>
        <el-col :span="3">
 
@@ -15,7 +19,7 @@
 
 
         <div class="block"><el-avatar :size="50" :src="circleUrl"></el-avatar></div>
-        <div></div>
+
         </router-link>
 
 
@@ -34,12 +38,12 @@
 
     <el-container>
       <el-aside width="200px">
+
       <el-menu
         default-active="1"
-        class="el-menu-vertical-demo"
+        class="el-menu-vertical-demo" >
 
-      >
-
+            <el-menu-item index="1" @click="goToVip()">会员</el-menu-item>
           <el-menu-item index="1" @click="goToMain()">热播</el-menu-item>
           <el-menu-item index="4" @click="SortByType('good')">评分</el-menu-item>
 
@@ -59,6 +63,7 @@
       </el-menu>
       </el-aside>
       <el-main height="800px">
+
         <div><router-view v-slot="{ Component }">
                      <transition name="el-fade-in-linear" mode="out-in">
                        <component :is="Component" style="height: 100%"/>
@@ -164,6 +169,8 @@ import {ElMessage} from "element-plus";
         searchKey:'',
         token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoicXdlciIsImlkIjo0LCJleHAiOjE3MDU1ODAxNzcsImlhdCI6MTcwNDk3NTM3NywianRpIjoiN2E4ZjdlYWItMDVmZi00ZmNkLTg0ZDUtMDk0M2Y2ZDU3NjRjIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl19.jmwNCltUVSXSNR6vC1kWEvUvhwTfU-ZJMEyifmWtTqM',
         type:'',
+        userRole:'',
+        visible: true,
       }
     },
     methods: {
@@ -214,7 +221,19 @@ import {ElMessage} from "element-plus";
 
                 goToMain(){
                     this.$router.push({path: '/main'});
+                },
+                goToVip(){
+                    console.log(localStorage.getItem('role'));
+                    if(localStorage.getItem('role')!='VIP'){
+                         window.alert("权限不足，请申请vip");
+                    }
+                    else{
+                        this.$router.push({path: '/main/vip'});
+
+
+                    }
                 }
+
         }
       }
 

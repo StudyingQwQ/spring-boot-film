@@ -81,6 +81,11 @@ const router = createRouter({
                                 name: 'user-info',
                                 component: () => import("@/views/main/User.vue"),
                             },
+                            {
+                                path: 'vip',
+                                name: 'vip-info',
+                                component: () => import("@/views/main/VipFilm.vue"),
+                             },
                         ]
         }
     ],
