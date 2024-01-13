@@ -107,4 +107,10 @@ function unauthorized() {
     return !takeAccessToken()
 }
 
-export { post, get, login, logout, unauthorized }
+function adminAuth(){
+    if(!takeAccessToken()) return false
+    const role = localStorage.getItem('role')
+    return role === 'ADMIN'
+}
+
+export { post, get, login, logout, unauthorized, adminAuth }
